@@ -1,1 +1,273 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
 
+body{
+
+background:linear-gradient(135deg,#061a40,#0c2d7a);
+color:white;
+
+}
+
+
+/* header */
+
+header{
+
+display:flex;
+justify-content:space-between;
+padding:20px 8%;
+align-items:center;
+
+}
+
+.logo{
+
+font-size:24px;
+font-weight:bold;
+letter-spacing:1px;
+
+}
+
+nav a{
+
+margin-left:30px;
+color:white;
+text-decoration:none;
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#00e5ff;
+
+}
+
+
+/* hero */
+
+.hero{
+
+text-align:center;
+padding:130px 20px;
+
+}
+
+.hero h1{
+
+font-size:52px;
+
+}
+
+.hero p{
+
+margin-top:20px;
+font-size:20px;
+opacity:.9;
+
+}
+
+.buttons{
+
+margin-top:40px;
+
+}
+
+.btn{
+
+background:#00e5ff;
+color:black;
+padding:14px 35px;
+border-radius:40px;
+margin-right:15px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.btn:hover{
+
+transform:scale(1.05);
+
+}
+
+.btn2{
+
+border:1px solid white;
+padding:14px 35px;
+border-radius:40px;
+cursor:pointer;
+
+}
+
+
+/* features */
+
+.features{
+
+padding:100px 10%;
+text-align:center;
+
+}
+
+.grid{
+
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+margin-top:50px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+padding:35px;
+border-radius:15px;
+width:220px;
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.card i{
+
+font-size:40px;
+margin-bottom:15px;
+color:#00e5ff;
+
+}
+
+.wide{
+
+width:460px;
+
+}
+
+
+/* steps */
+
+.works{
+
+padding:100px 10%;
+text-align:center;
+
+}
+
+.steps{
+
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+margin-top:40px;
+
+}
+
+.step{
+
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:12px;
+width:150px;
+
+}
+
+.step i{
+
+font-size:28px;
+margin-bottom:10px;
+
+}
+
+
+/* testimonials */
+
+.testimonial{
+
+padding:100px 10%;
+text-align:center;
+
+}
+
+.reviews{
+
+display:flex;
+gap:30px;
+justify-content:center;
+margin-top:40px;
+flex-wrap:wrap;
+
+}
+
+.review{
+
+background:rgba(255,255,255,0.08);
+padding:30px;
+border-radius:12px;
+width:300px;
+
+}
+
+.review span{
+
+display:block;
+margin-top:15px;
+opacity:.8;
+
+}
+
+
+/* pricing */
+
+.pricing{
+
+padding:100px 10%;
+text-align:center;
+
+}
+
+.price{
+
+background:white;
+color:black;
+display:inline-block;
+padding:50px;
+border-radius:20px;
+
+}
+
+.price button{
+
+background:#00e5ff;
+border:none;
+padding:14px 35px;
+border-radius:30px;
+margin-top:20px;
+cursor:pointer;
+font-weight:bold;
+
+}
+
+
+/* footer */
+
+footer{
+
+text-align:center;
+padding:40px;
+opacity:.8;
+
+}
