@@ -21,24 +21,30 @@ header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 50px;
-background:#2f2f35;
+padding:10px 50px;
+background:#8a8a8a; /* 70% lighter grey */
 }
 
+/* LOGO */
+
 .logo img{
-height:75px;
+height:120px;   /* logo double size */
+margin-top:-25px;
+margin-bottom:-25px;
 }
+
+/* MENU */
 
 nav a{
 margin-left:25px;
 text-decoration:none;
-color:#f0f0f0;
-font-weight:500;
+color:#222;
+font-weight:600;
 font-size:16px;
 }
 
 nav a:hover{
-color:#4da6ff;
+color:#0066cc;
 }
 
 /* HERO */
@@ -59,6 +65,8 @@ font-size:20px;
 max-width:650px;
 color:#1a3d66;
 }
+
+/* BUTTONS */
 
 .buttons{
 margin-top:35px;
@@ -154,6 +162,11 @@ header{
 flex-direction:column;
 }
 
+.logo img{
+height:90px;
+margin:0;
+}
+
 nav{
 margin-top:10px;
 }
@@ -203,9 +216,7 @@ Manage your business digitally with powerful and simple software.
 </p>
 
 <div class="buttons">
-<a href="tms-register.html">
-<button>Transport Management System (TMS)</button>
-</a>
+<button onclick="location.href='tms-register.html'">Transport Management System (TMS)</button>
 <button>Cotton Management System (CMS)</button>
 </div>
 
