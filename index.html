@@ -1,172 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devॐ Technologies</title>
 
-<header class="navbar">
+<style>
 
-<div class="logo-area">
+body{
+margin:0;
+font-family: Arial, Helvetica, sans-serif;
+background:#f5f7fb;
+}
 
-<img src="devom-technologies-logo-transparent.png">
+/* HEADER */
 
-<span>Devom Technologies</span>
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 60px;
+background:white;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
 
-</div>
+.logo{
+display:flex;
+align-items:center;
+}
 
-<nav>
+.logo img{
+height:60px;
+}
 
-<a href="#">Home</a>
-<a href="#">Features</a>
-<a href="#">Pricing</a>
-<a href="#">Testimonials</a>
-<a href="#">Contact</a>
+nav a{
+margin:0 15px;
+text-decoration:none;
+color:#333;
+font-weight:600;
+}
 
-<a class="login-btn" href="#">Login</a>
+nav a:hover{
+color:#0077ff;
+}
 
-</nav>
+/* HERO */
 
-</header>
+.hero{
+text-align:center;
+padding:100px 20px;
+background:linear-gradient(120deg,#0077ff,#00c6ff);
+color:white;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+max-width:700px;
+margin:auto;
+}
+
+.hero button{
+margin-top:30px;
+padding:15px 40px;
+font-size:18px;
+border:none;
+background:white;
+color:#0077ff;
+border-radius:30px;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* PRODUCTS */
+
+.products{
+padding:80px 10%;
+text-align:center;
+}
+
+.products h2{
+font-size:36px;
+margin-bottom:40px;
+}
+
+.product-grid{
+display:flex;
+gap:40px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+width:320px;
+}
+
+.card h3{
+color:#0077ff;
+}
+
+.card p{
+color:#555;
+}
+
+.card button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+background:#0077ff;
+color:white;
+border-radius:25px;
+cursor:pointer;
+}
+
+/* ABOUT */
+
+.about{
+padding:80px 10%;
+background:white;
+text-align:center;
+}
+
+.about h2{
+font-size:36px;
+margin-bottom:20px;
+}
+
+.about p{
+max-width:800px;
+margin:auto;
+color:#555;
+line-height:1.7;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+color:white;
+padding:40px;
+text-align:center;
+}
+
+footer p{
+margin:5px;
+}
+
+</style>
+
+</head>
 
 <body>
 
 <header>
 
 <div class="logo">
-Devom Technologies
+<img src="logo.png">
 </div>
 
 <nav>
-
 <a href="#">Home</a>
-<a href="#">Features</a>
-<a href="#">Pricing</a>
-<a href="#">Testimonials</a>
+<a href="#">About</a>
+<a href="#">Products</a>
 <a href="#">Contact</a>
-
 </nav>
 
 </header>
 
-
-<!-- HERO -->
-
 <section class="hero">
 
-<h1>Smart SaaS Solutions <br> for Your Business</h1>
+<h1>Smart SaaS Solutions</h1>
 
-<p>Invoice • Ledger • E-Way Bill • Inventory • Analytics</p>
+<p>
+Devॐ Technologies provides powerful digital solutions for
+Transport Management and Cotton Industry automation.
+</p>
 
-<div class="buttons">
-
-<a class="btn">Get Started</a>
-<a class="btn2">Watch Tutorial</a>
-
-</div>
+<button>Register Now</button>
 
 </section>
 
+<section class="products">
 
-<!-- FEATURES -->
+<h2>Our Products</h2>
 
-<section class="features">
-
-<h2>Our Key Features</h2>
-
-<div class="grid">
+<div class="product-grid">
 
 <div class="card">
-<i class="fa-solid fa-file-invoice"></i>
-<h3>Invoice & Billing</h3>
-</div>
+<h3>Transport Management System (TMS)</h3>
 
-<div class="card">
-<i class="fa-solid fa-book"></i>
-<h3>Ledger & Accounting</h3>
+<p>
+Complete transport software including trip management,
+vehicle records, driver management, dual ledger system
+and client tracking.
+</p>
+
+<button>Register for TMS</button>
+
 </div>
 
 <div class="card">
-<i class="fa-solid fa-truck"></i>
-<h3>E-Way Bill</h3>
-</div>
 
-<div class="card">
-<i class="fa-solid fa-box"></i>
-<h3>Inventory & Stock</h3>
-</div>
+<h3>Cotton Management System (CMS)</h3>
 
-<div class="card wide">
-<i class="fa-solid fa-chart-line"></i>
-<h3>Reports & Analytics</h3>
-</div>
+<p>
+Manage cotton purchase, bale inventory, stock,
+quality records, dispatch and complete party ledger
+in one smart system.
+</p>
 
-</div>
-
-</section>
-
-
-<!-- HOW IT WORKS -->
-
-<section class="works">
-
-<h2>How It Works</h2>
-
-<div class="steps">
-
-<div class="step">
-<i class="fa-solid fa-play"></i>
-<p>Watch Tutorial</p>
-</div>
-
-<div class="step">
-<i class="fa-solid fa-user-plus"></i>
-<p>Register</p>
-</div>
-
-<div class="step">
-<i class="fa-solid fa-credit-card"></i>
-<p>Make Payment</p>
-</div>
-
-<div class="step">
-<i class="fa-solid fa-check"></i>
-<p>Activate</p>
-</div>
-
-<div class="step">
-<i class="fa-solid fa-rocket"></i>
-<p>Start Using</p>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- TESTIMONIAL -->
-
-<section class="testimonial">
-
-<h2>What Our Clients Say</h2>
-
-<div class="reviews">
-
-<div class="review">
-
-<h3>Rajesh K.</h3>
-<p>XYZ Enterprises</p>
-
-<span>
-Amazing software, simplified our accounting.
-</span>
-
-</div>
-
-<div class="review">
-
-<h3>Anita S.</h3>
-<p>ABC Logistics</p>
-
-<span>
-Great value and excellent support.
-</span>
+<button>Register for CMS</button>
 
 </div>
 
@@ -174,29 +225,23 @@ Great value and excellent support.
 
 </section>
 
+<section class="about">
 
-<!-- PRICING -->
+<h2>About Devॐ Technologies</h2>
 
-<section class="pricing">
-
-<h2>Affordable Pricing</h2>
-
-<div class="price">
-
-<h1>₹1000 / month</h1>
-
-<p>All Features Included</p>
-
-<button>Subscribe Now</button>
-
-</div>
+<p>
+Devॐ Technologies builds smart SaaS platforms for
+transport and cotton industries. Our mission is to
+digitize traditional businesses with powerful,
+easy-to-use software solutions.
+</p>
 
 </section>
-
 
 <footer>
 
-<p>© 2026 Devom Technologies</p>
+<p>© 2026 Devॐ Technologies</p>
+<p>Smart SaaS Solutions for Transport & Cotton Industry</p>
 
 </footer>
 
