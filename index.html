@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Devom Technologies</title>
 
-<!-- Stylish Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
-font-family:'Poppins', sans-serif;
+font-family:'Poppins',sans-serif;
 background:#f5f7fb;
 color:#222;
 }
@@ -23,11 +24,9 @@ header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:10px 50px;
+padding:10px 60px;
 background:#0f172a;
 }
-
-/* LOGO */
 
 .logo img{
 height:180px;
@@ -35,12 +34,10 @@ margin-top:-55px;
 margin-bottom:-55px;
 }
 
-/* MENU */
-
 nav a{
-margin-left:25px;
+margin-left:30px;
 text-decoration:none;
-color:#ffffff;
+color:white;
 font-weight:500;
 font-size:16px;
 }
@@ -57,11 +54,9 @@ background:linear-gradient(120deg,#6fb8ff,#d9ecff);
 }
 
 .hero h1{
-font-size:52px;
-margin-bottom:20px;
+font-size:54px;
 color:#0d2a4d;
-font-weight:700;
-letter-spacing:1px;
+margin-bottom:20px;
 }
 
 .hero p{
@@ -69,8 +64,6 @@ font-size:20px;
 max-width:650px;
 color:#1a3d66;
 }
-
-/* BUTTONS */
 
 .buttons{
 margin-top:35px;
@@ -97,14 +90,13 @@ background:#1e4fd1;
 /* PRODUCTS */
 
 .products{
-padding:70px 10%;
+padding:80px 10%;
 background:white;
 }
 
 .products h2{
-font-size:34px;
+font-size:36px;
 margin-bottom:40px;
-color:#1a1a1a;
 }
 
 .product-grid{
@@ -130,15 +122,45 @@ color:#444;
 line-height:1.6;
 }
 
+/* FEATURES */
+
+.features{
+padding:80px 10%;
+background:#f5f7fb;
+}
+
+.features h2{
+font-size:36px;
+margin-bottom:40px;
+text-align:center;
+}
+
+.feature-grid{
+display:flex;
+flex-wrap:wrap;
+gap:30px;
+justify-content:center;
+}
+
+.feature{
+background:white;
+padding:25px;
+width:250px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+text-align:center;
+}
+
 /* ABOUT */
 
 .about{
 padding:80px 10%;
 text-align:center;
+background:white;
 }
 
 .about h2{
-font-size:34px;
+font-size:36px;
 margin-bottom:20px;
 }
 
@@ -146,7 +168,19 @@ margin-bottom:20px;
 max-width:800px;
 margin:auto;
 line-height:1.7;
-color:#444;
+}
+
+/* CONTACT */
+
+.contact{
+padding:80px 10%;
+background:#f5f7fb;
+text-align:center;
+}
+
+.contact h2{
+font-size:36px;
+margin-bottom:20px;
 }
 
 /* FOOTER */
@@ -175,12 +209,13 @@ nav{
 margin-top:10px;
 }
 
-.hero{
-text-align:left;
-}
-
 .product-grid{
 flex-direction:column;
+}
+
+.feature-grid{
+flex-direction:column;
+align-items:center;
 }
 
 .buttons button{
@@ -198,7 +233,7 @@ width:100%;
 <header>
 
 <div class="logo">
-<img src="devom-technologies-logo.png" alt="Devom Technologies Logo">
+<img src="devom-technologies-logo.png">
 </div>
 
 <nav>
@@ -216,12 +251,19 @@ width:100%;
 
 <p>
 Smart SaaS solutions for Transport and Cotton Industry.
-Manage your business digitally with powerful and simple software.
+Digitizing traditional businesses with powerful software.
 </p>
 
 <div class="buttons">
-<button onclick="location.href='tms-register.html'">Transport Management System (TMS)</button>
-<button>Cotton Management System (CMS)</button>
+
+<button onclick="location.href='tms-register.html'">
+Transport Management System (TMS)
+</button>
+
+<button>
+Cotton Management System (CMS)
+</button>
+
 </div>
 
 </section>
@@ -237,8 +279,7 @@ Manage your business digitally with powerful and simple software.
 <h3>Transport Management System</h3>
 
 <p>
-Complete transport business software including trip management,
-vehicle records, driver details, client ledger and transporter ledger.
+Manage trips, vehicles, drivers, client ledger and transporter ledger with a powerful transport software.
 </p>
 
 </div>
@@ -248,11 +289,27 @@ vehicle records, driver details, client ledger and transporter ledger.
 <h3>Cotton Management System</h3>
 
 <p>
-Manage cotton purchase, bale stock, quality records,
-dispatch management and party ledger in one platform.
+Manage cotton purchase, bale stock, quality tracking and dispatch with complete digital system.
 </p>
 
 </div>
+
+</div>
+
+</section>
+
+<section class="features">
+
+<h2>Key Features</h2>
+
+<div class="feature-grid">
+
+<div class="feature">Trip Management</div>
+<div class="feature">Vehicle Records</div>
+<div class="feature">Driver Management</div>
+<div class="feature">Client Ledger</div>
+<div class="feature">Transporter Ledger</div>
+<div class="feature">Smart Reports</div>
 
 </div>
 
@@ -263,9 +320,18 @@ dispatch management and party ledger in one platform.
 <h2>About Devom Technologies</h2>
 
 <p>
-Devom Technologies builds powerful SaaS platforms for transport and cotton industries.
-Our mission is to digitize traditional businesses with modern, easy-to-use software solutions.
+Devom Technologies builds modern SaaS platforms for transport and cotton industries.
+Our mission is to digitize traditional business operations with simple and powerful software solutions.
 </p>
+
+</section>
+
+<section class="contact">
+
+<h2>Contact Us</h2>
+
+<p>Email: support@devomtechnologies.com</p>
+<p>Phone: +91 9691150577</p>
 
 </section>
 
@@ -277,5 +343,6 @@ Our mission is to digitize traditional businesses with modern, easy-to-use softw
 </footer>
 
 </body>
+
 </html>
 ```
