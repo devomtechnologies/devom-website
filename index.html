@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Devom Technologies</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,7 +15,6 @@ body{
 margin:0;
 font-family:'Poppins',sans-serif;
 background:#f5f7fb;
-color:#222;
 }
 
 /* HEADER */
@@ -24,128 +23,112 @@ header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:10px 60px;
+padding:10px 30px;
 background:#0f172a;
+flex-wrap:wrap;
 }
 
 .logo img{
-height:180px;
-margin-top:-55px;
-margin-bottom:-55px;
+height:150px;
+margin-top:-40px;
+margin-bottom:-40px;
+}
+
+nav{
+display:flex;
+flex-wrap:wrap;
 }
 
 nav a{
-margin-left:30px;
+margin-left:20px;
 text-decoration:none;
 color:white;
 font-weight:500;
-font-size:16px;
-}
-
-nav a:hover{
-color:#38bdf8;
 }
 
 /* HERO */
 
 .hero{
-padding:90px 10%;
+padding:70px 20px;
 background:linear-gradient(120deg,#6fb8ff,#d9ecff);
 }
 
 .hero h1{
-font-size:54px;
+font-size:40px;
 color:#0d2a4d;
-margin-bottom:20px;
 }
 
 .hero p{
-font-size:20px;
-max-width:650px;
+font-size:18px;
+max-width:600px;
 color:#1a3d66;
 }
 
 .buttons{
-margin-top:35px;
+margin-top:30px;
 }
 
 .buttons button{
 display:block;
 margin-bottom:15px;
-padding:14px 30px;
-font-size:17px;
+padding:12px 25px;
 border:none;
 border-radius:25px;
 background:#2563eb;
 color:white;
-cursor:pointer;
-width:260px;
-text-align:left;
-}
-
-.buttons button:hover{
-background:#1e4fd1;
+font-size:16px;
+width:250px;
 }
 
 /* PRODUCTS */
 
 .products{
-padding:80px 10%;
+padding:60px 20px;
 background:white;
 }
 
 .products h2{
-font-size:36px;
-margin-bottom:40px;
+font-size:30px;
+margin-bottom:30px;
 }
 
 .product-grid{
 display:flex;
-gap:40px;
+gap:30px;
 flex-wrap:wrap;
 }
 
 .card{
 background:#f8fbff;
-padding:35px;
+padding:25px;
 border-radius:10px;
 box-shadow:0 8px 25px rgba(0,0,0,0.08);
-width:320px;
-}
-
-.card h3{
-color:#2563eb;
-}
-
-.card p{
-color:#444;
-line-height:1.6;
+width:300px;
 }
 
 /* FEATURES */
 
 .features{
-padding:80px 10%;
+padding:60px 20px;
 background:#f5f7fb;
 }
 
 .features h2{
-font-size:36px;
-margin-bottom:40px;
 text-align:center;
+margin-bottom:30px;
 }
 
 .feature-grid{
 display:flex;
 flex-wrap:wrap;
-gap:30px;
+gap:20px;
 justify-content:center;
 }
 
 .feature{
 background:white;
-padding:25px;
-width:250px;
+padding:20px;
+width:220px;
 border-radius:10px;
 box-shadow:0 5px 20px rgba(0,0,0,0.05);
 text-align:center;
@@ -154,42 +137,25 @@ text-align:center;
 /* ABOUT */
 
 .about{
-padding:80px 10%;
+padding:60px 20px;
 text-align:center;
 background:white;
-}
-
-.about h2{
-font-size:36px;
-margin-bottom:20px;
-}
-
-.about p{
-max-width:800px;
-margin:auto;
-line-height:1.7;
 }
 
 /* CONTACT */
 
 .contact{
-padding:80px 10%;
-background:#f5f7fb;
+padding:60px 20px;
 text-align:center;
-}
-
-.contact h2{
-font-size:36px;
-margin-bottom:20px;
 }
 
 /* FOOTER */
 
 footer{
 background:#0f172a;
-color:#ddd;
+color:white;
 text-align:center;
-padding:40px;
+padding:30px;
 }
 
 /* MOBILE */
@@ -198,10 +164,11 @@ padding:40px;
 
 header{
 flex-direction:column;
+align-items:flex-start;
 }
 
 .logo img{
-height:120px;
+height:100px;
 margin:0;
 }
 
@@ -209,16 +176,27 @@ nav{
 margin-top:10px;
 }
 
+nav a{
+margin:10px 10px 0 0;
+}
+
+.hero h1{
+font-size:32px;
+}
+
+.buttons button{
+width:100%;
+}
+
 .product-grid{
 flex-direction:column;
 }
 
-.feature-grid{
-flex-direction:column;
-align-items:center;
+.card{
+width:100%;
 }
 
-.buttons button{
+.feature{
 width:100%;
 }
 
@@ -238,8 +216,8 @@ width:100%;
 
 <nav>
 <a href="#">Home</a>
-<a href="#">About</a>
 <a href="#">Products</a>
+<a href="#">About</a>
 <a href="#">Contact</a>
 </nav>
 
@@ -257,11 +235,11 @@ Digitizing traditional businesses with powerful software.
 <div class="buttons">
 
 <button onclick="location.href='tms-register.html'">
-Transport Management System (TMS)
+Transport Management System
 </button>
 
 <button>
-Cotton Management System (CMS)
+Cotton Management System
 </button>
 
 </div>
@@ -279,7 +257,7 @@ Cotton Management System (CMS)
 <h3>Transport Management System</h3>
 
 <p>
-Manage trips, vehicles, drivers, client ledger and transporter ledger with a powerful transport software.
+Manage trips, vehicles, drivers and transport business operations digitally.
 </p>
 
 </div>
@@ -289,7 +267,7 @@ Manage trips, vehicles, drivers, client ledger and transporter ledger with a pow
 <h3>Cotton Management System</h3>
 
 <p>
-Manage cotton purchase, bale stock, quality tracking and dispatch with complete digital system.
+Manage cotton purchase, bale stock, quality tracking and dispatch.
 </p>
 
 </div>
@@ -321,14 +299,14 @@ Manage cotton purchase, bale stock, quality tracking and dispatch with complete 
 
 <p>
 Devom Technologies builds modern SaaS platforms for transport and cotton industries.
-Our mission is to digitize traditional business operations with simple and powerful software solutions.
+Our mission is to digitize traditional businesses with powerful yet simple software solutions.
 </p>
 
 </section>
 
 <section class="contact">
 
-<h2>Contact Us</h2>
+<h2>Contact</h2>
 
 <p>Email: support@devomtechnologies.com</p>
 <p>Phone: +91 9691150577</p>
@@ -338,7 +316,6 @@ Our mission is to digitize traditional business operations with simple and power
 <footer>
 
 <p>© 2026 Devom Technologies</p>
-<p>Smart SaaS Solutions for Transport & Cotton Industry</p>
 
 </footer>
 
