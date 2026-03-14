@@ -1,16 +1,18 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Devॐ Technologies</title>
+<title>Devom Technologies</title>
 
 <style>
 
 body{
 margin:0;
-font-family: Arial, Helvetica, sans-serif;
+font-family:Segoe UI, Arial, sans-serif;
 background:#f5f7fb;
+color:#222;
 }
 
 /* HEADER */
@@ -19,139 +21,155 @@ header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 60px;
-background:white;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-.logo{
-display:flex;
-align-items:center;
+padding:15px 50px;
+background:#2f2f35;
 }
 
 .logo img{
-height:60px;
+height:75px;
 }
 
 nav a{
-margin:0 15px;
+margin-left:25px;
 text-decoration:none;
-color:#333;
-font-weight:600;
+color:#f0f0f0;
+font-weight:500;
+font-size:16px;
 }
 
 nav a:hover{
-color:#0077ff;
+color:#4da6ff;
 }
 
 /* HERO */
 
 .hero{
-text-align:center;
-padding:100px 20px;
-background:linear-gradient(120deg,#0077ff,#00c6ff);
-color:white;
+padding:90px 10%;
+background:linear-gradient(120deg,#6fb8ff,#d9ecff);
 }
 
 .hero h1{
-font-size:50px;
+font-size:48px;
 margin-bottom:20px;
+color:#0d2a4d;
 }
 
 .hero p{
 font-size:20px;
-max-width:700px;
-margin:auto;
+max-width:650px;
+color:#1a3d66;
 }
 
-.hero button{
-margin-top:30px;
-padding:15px 40px;
-font-size:18px;
+.buttons{
+margin-top:35px;
+}
+
+.buttons button{
+display:block;
+margin-bottom:15px;
+padding:14px 30px;
+font-size:17px;
 border:none;
-background:white;
-color:#0077ff;
-border-radius:30px;
+border-radius:25px;
+background:#0066cc;
+color:white;
 cursor:pointer;
-font-weight:bold;
+width:260px;
+text-align:left;
+}
+
+.buttons button:hover{
+background:#004fa3;
 }
 
 /* PRODUCTS */
 
 .products{
-padding:80px 10%;
-text-align:center;
+padding:70px 10%;
+background:white;
 }
 
 .products h2{
-font-size:36px;
+font-size:34px;
 margin-bottom:40px;
+color:#1a1a1a;
 }
 
 .product-grid{
 display:flex;
 gap:40px;
-justify-content:center;
 flex-wrap:wrap;
 }
 
 .card{
-background:white;
-padding:40px;
-border-radius:12px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
+background:#f8fbff;
+padding:35px;
+border-radius:10px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
 width:320px;
 }
 
 .card h3{
-color:#0077ff;
+color:#0066cc;
 }
 
 .card p{
-color:#555;
-}
-
-.card button{
-margin-top:20px;
-padding:12px 25px;
-border:none;
-background:#0077ff;
-color:white;
-border-radius:25px;
-cursor:pointer;
+color:#444;
+line-height:1.6;
 }
 
 /* ABOUT */
 
 .about{
 padding:80px 10%;
-background:white;
 text-align:center;
 }
 
 .about h2{
-font-size:36px;
+font-size:34px;
 margin-bottom:20px;
 }
 
 .about p{
 max-width:800px;
 margin:auto;
-color:#555;
 line-height:1.7;
+color:#444;
 }
 
 /* FOOTER */
 
 footer{
-background:#111;
-color:white;
-padding:40px;
+background:#1f1f22;
+color:#ddd;
 text-align:center;
+padding:40px;
 }
 
-footer p{
-margin:5px;
+/* MOBILE */
+
+@media(max-width:768px){
+
+header{
+flex-direction:column;
+}
+
+nav{
+margin-top:10px;
+}
+
+.hero{
+text-align:left;
+}
+
+.product-grid{
+flex-direction:column;
+}
+
+.buttons button{
+width:100%;
+}
+
 }
 
 </style>
@@ -163,7 +181,7 @@ margin:5px;
 <header>
 
 <div class="logo">
-<img src="logo.png">
+<img src="devom-technologies-logo.png" alt="Devom Technologies Logo">
 </div>
 
 <nav>
@@ -177,47 +195,45 @@ margin:5px;
 
 <section class="hero">
 
-<h1>Smart SaaS Solutions</h1>
+<h1>Devॐ Technologies</h1>
 
 <p>
-Devॐ Technologies provides powerful digital solutions for
-Transport Management and Cotton Industry automation.
+Smart SaaS solutions for Transport and Cotton Industry.
+Manage your business digitally with powerful and simple software.
 </p>
 
-<button>Register Now</button>
+<div class="buttons">
+<button>Transport Management System (TMS)</button>
+<button>Cotton Management System (CMS)</button>
+</div>
 
 </section>
 
 <section class="products">
 
-<h2>Our Products</h2>
+<h2>Our Software Solutions</h2>
 
 <div class="product-grid">
 
 <div class="card">
-<h3>Transport Management System (TMS)</h3>
+
+<h3>Transport Management System</h3>
 
 <p>
-Complete transport software including trip management,
-vehicle records, driver management, dual ledger system
-and client tracking.
+Complete transport business software including trip management,
+vehicle records, driver details, client ledger and transporter ledger.
 </p>
-
-<button>Register for TMS</button>
 
 </div>
 
 <div class="card">
 
-<h3>Cotton Management System (CMS)</h3>
+<h3>Cotton Management System</h3>
 
 <p>
-Manage cotton purchase, bale inventory, stock,
-quality records, dispatch and complete party ledger
-in one smart system.
+Manage cotton purchase, bale stock, quality records,
+dispatch management and party ledger in one platform.
 </p>
-
-<button>Register for CMS</button>
 
 </div>
 
@@ -227,23 +243,22 @@ in one smart system.
 
 <section class="about">
 
-<h2>About Devॐ Technologies</h2>
+<h2>About Devom Technologies</h2>
 
 <p>
-Devॐ Technologies builds smart SaaS platforms for
-transport and cotton industries. Our mission is to
-digitize traditional businesses with powerful,
-easy-to-use software solutions.
+Devom Technologies builds powerful SaaS platforms for transport and cotton industries.
+Our mission is to digitize traditional businesses with modern, easy-to-use software solutions.
 </p>
 
 </section>
 
 <footer>
 
-<p>© 2026 Devॐ Technologies</p>
+<p>© 2026 Devom Technologies</p>
 <p>Smart SaaS Solutions for Transport & Cotton Industry</p>
 
 </footer>
 
 </body>
 </html>
+```
