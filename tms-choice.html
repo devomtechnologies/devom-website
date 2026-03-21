@@ -4,21 +4,56 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TMS Options</title>
-<style>
-    body {font-family: Arial; text-align:center; padding:50px;}
-    .btn {display:inline-block; padding:12px 30px; margin:10px; font-size:16px; border-radius:8px; text-decoration:none; color:#fff; font-weight:bold; transition:0.3s;}
-    .btn-register {background-color:#007bff;}
-    .btn-register:hover {background-color:#0056b3;}
-    .btn-login {background-color:#28a745;}
-    .btn-login:hover {background-color:#1e7e34;}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"> <!-- existing CSS -->
 </head>
 <body>
-<h2>Transport Management System</h2>
-<p>Please choose an option:</p>
 
-<a href="tms-register.html" class="btn btn-register">Register Now</a>
-<a href="tms-login.html" class="btn btn-login">Login</a>
+<!-- Header placeholder -->
+<div id="header"></div>
+
+<!-- TMS Buttons Section -->
+<section style="text-align:center; padding:60px 20px; background:#f4f4f9;">
+  <h2>Transport Management System</h2>
+  <p>Please choose an option:</p>
+  <div class="tms-buttons">
+    <a href="tms-register.html" class="btn btn-register">Register Now</a>
+    <a href="tms-login.html" class="btn btn-login">Login</a>
+  </div>
+</section>
+
+<!-- Footer placeholder -->
+<div id="footer"></div>
+
+<!-- JS to load header/footer -->
+<script>
+fetch('header.html')
+  .then(res => res.text())
+  .then(data => { document.getElementById('header').innerHTML = data; });
+
+fetch('footer.html')
+  .then(res => res.text())
+  .then(data => { document.getElementById('footer').innerHTML = data; });
+</script>
+
+<!-- Inline Button CSS (optional if style.css already has it) -->
+<style>
+.tms-buttons .btn {
+  display:inline-block;
+  padding:12px 30px;
+  margin:10px;
+  font-size:16px;
+  border-radius:8px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:bold;
+  transition:0.3s;
+}
+.btn-register {background-color:#007bff;}
+.btn-register:hover {background-color:#0056b3;}
+.btn-login {background-color:#28a745;}
+.btn-login:hover {background-color:#1e7e34;}
+</style>
 
 </body>
 </html>
