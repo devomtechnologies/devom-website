@@ -135,42 +135,42 @@ footer{
 }
 
 /* TMS Forms */
-.form-section{
-  padding:60px 20px;
-  max-width:500px;
-  margin:auto;
-  background:white;
-  border-radius:12px;
-  box-shadow:0 5px 25px rgba(0,0,0,0.1);
-}
-.form-section h2{
-  text-align:center;
-  margin-bottom:30px;
-}
 .form-section {
   padding:60px 20px;
-  max-width:600px;   /* 500 → 600px for better width */
+  max-width:600px;   /* wider for bigger screens */
   margin:auto;
   background:white;
   border-radius:12px;
   box-shadow:0 5px 25px rgba(0,0,0,0.1);
+}
+
+.form-section h2 {
+  text-align:center;
+  margin-bottom:30px;
 }
 
 .form-section input {
   width:100%;
-  padding:15px 18px;   /* thoda bada padding for comfort */
-  margin-bottom:20px;  /* thoda spacing */
+  padding:15px 18px;       /* bigger input fields */
+  margin-bottom:20px;      /* spacing between fields */
   border:1px solid #ccc;
-  border-radius:10px;  /* thoda rounded */
-  font-size:17px;      /* slightly bigger font */
-  box-sizing:border-box;  /* ensures padding included in width */
+  border-radius:10px;
+  font-size:17px;
+  box-sizing:border-box;    /* ensures padding included in width */
 }
 
 .form-section button {
   width:100%;
-  padding:15px;        /* thoda bigger button */
+  padding:15px;
   font-size:17px;
+  border:none;
   border-radius:10px;
+  background:#007bff;
+  color:white;
+  cursor:pointer;
+}
+.form-section button:hover {
+  background:#0056b3;
 }
 
 /* TMS Choice Buttons */
