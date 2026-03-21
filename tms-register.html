@@ -1,195 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>TMS Register - Devom Technologies</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+<title>TMS Register</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-
-body{
-margin:0;
-font-family:'Poppins',sans-serif;
-background:#f4f7fb;
-}
-
-/* HEADER */
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:10px 30px;
-background:#0f172a;
-flex-wrap:wrap;
-}
-
-.logo img{
-height:120px;
-}
-
-nav a{
-margin-left:20px;
-text-decoration:none;
-color:white;
-}
-
-/* FORM */
-.container{
-display:flex;
-justify-content:center;
-align-items:center;
-padding:50px 20px;
-}
-
-.form-box{
-background:white;
-padding:35px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.1);
-width:400px;
-}
-
-.form-box h2{
-text-align:center;
-margin-bottom:20px;
-}
-
-.input-group{
-margin-bottom:15px;
-}
-
-.input-group label{
-font-size:14px;
-font-weight:500;
-display:block;
-margin-bottom:5px;
-}
-
-.input-group input{
-width:100%;
-padding:12px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-/* BUTTON */
-button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:25px;
-background:linear-gradient(45deg,#2563eb,#7c3aed);
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.05);
-}
-
-/* FOOTER */
-footer{
-background:#0f172a;
-color:white;
-text-align:center;
-padding:20px;
-margin-top:40px;
-}
-
+body{margin:0;font-family:'Poppins',sans-serif;background:#f5f7fb;}
+.form-section{padding:60px 20px; max-width:500px; margin:auto; background:white; border-radius:12px; box-shadow:0 5px 25px rgba(0,0,0,0.1);}
+.form-section h2{text-align:center; margin-bottom:30px;}
+.form-section input{width:100%; padding:12px 15px; margin-bottom:15px; border:1px solid #ccc; border-radius:8px; font-size:16px;}
+.form-section button{width:100%; padding:12px; border:none; border-radius:8px; background:#007bff; color:white; font-size:16px; cursor:pointer;}
+.form-section button:hover{background:#0056b3;}
 </style>
-
 </head>
-
 <body>
 
-<!-- HEADER -->
-<header>
+<!-- Header -->
+<div id="header"></div>
 
-<div class="logo">
-<img src="devom-technologies-logo.png">
-</div>
+<section class="form-section">
+  <h2>Register for TMS</h2>
+  <form>
+    <input type="text" placeholder="Owner Name" required>
+    <input type="text" placeholder="Transport Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Mobile Number" required>
+    <input type="text" placeholder="City" required>
+    <input type="text" placeholder="State" required>
+    <input type="text" placeholder="Create User ID" required>
+    <input type="password" placeholder="Create Password" required>
+    <button type="submit">Register</button>
+  </form>
+</section>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="products.html">Products</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</nav>
+<!-- Footer -->
+<div id="footer"></div>
 
-</header>
-
-<!-- FORM -->
-<div class="container">
-
-<div class="form-box">
-
-<h2>TMS Registration</h2>
-
-<form action="https://formsubmit.co/devomtechnologies@gmail.com" method="POST">
-
-<div class="input-group">
-<label>Owner Name</label>
-<input type="text" name="owner_name" required>
-</div>
-
-<div class="input-group">
-<label>Transport Name</label>
-<input type="text" name="transport_name" required>
-</div>
-
-<div class="input-group">
-<label>Email</label>
-<input type="email" name="email" required>
-</div>
-
-<div class="input-group">
-<label>Mobile Number</label>
-<input type="text" name="mobile" required>
-</div>
-
-<div class="input-group">
-<label>City</label>
-<input type="text" name="city" required>
-</div>
-
-<div class="input-group">
-<label>State</label>
-<input type="text" name="state" required>
-</div>
-
-<div class="input-group">
-<label>Create User ID</label>
-<input type="text" name="user_id" required>
-</div>
-
-<div class="input-group">
-<label>Password</label>
-<input type="password" name="password" required>
-</div>
-
-<!-- HIDDEN SETTINGS -->
-<input type="hidden" name="_next" value="register-success.html">
-<input type="hidden" name="_captcha" value="false">
-<input type="text" name="_honey" style="display:none">
-
-<button type="submit">Register Now</button>
-
-</form>
-
-</div>
-
-</div>
-
-<!-- FOOTER -->
-<footer>
-<p>© 2026 Devom Technologies</p>
-</footer>
+<!-- JS for header/footer -->
+<script>
+fetch('header.html').then(res=>res.text()).then(data=>document.getElementById('header').innerHTML=data);
+fetch('footer.html').then(res=>res.text()).then(data=>document.getElementById('footer').innerHTML=data);
+</script>
 
 </body>
 </html>
