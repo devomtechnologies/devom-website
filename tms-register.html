@@ -4,15 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TMS Register</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-body{margin:0;font-family:'Poppins',sans-serif;background:#f5f7fb;}
-.form-section{padding:60px 20px; max-width:500px; margin:auto; background:white; border-radius:12px; box-shadow:0 5px 25px rgba(0,0,0,0.1);}
-.form-section h2{text-align:center; margin-bottom:30px;}
-.form-section input{width:100%; padding:12px 15px; margin-bottom:15px; border:1px solid #ccc; border-radius:8px; font-size:16px;}
-.form-section button{width:100%; padding:12px; border:none; border-radius:8px; background:#007bff; color:white; font-size:16px; cursor:pointer;}
-.form-section button:hover{background:#0056b3;}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -37,10 +29,13 @@ body{margin:0;font-family:'Poppins',sans-serif;background:#f5f7fb;}
 <!-- Footer -->
 <div id="footer"></div>
 
-<!-- JS for header/footer -->
 <script>
-fetch('header.html').then(res=>res.text()).then(data=>document.getElementById('header').innerHTML=data);
-fetch('footer.html').then(res=>res.text()).then(data=>document.getElementById('footer').innerHTML=data);
+fetch('header.html')
+  .then(res=>res.text())
+  .then(data=>document.getElementById('header').innerHTML=data);
+fetch('footer.html')
+  .then(res=>res.text())
+  .then(data=>document.getElementById('footer').innerHTML=data);
 </script>
 
 </body>
