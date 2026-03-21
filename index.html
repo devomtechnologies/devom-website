@@ -1,341 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Devom Technologies</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="style.css">
 <style>
-
-body{
-margin:0;
-font-family:'Poppins',sans-serif;
-background:#f5f7fb;
+body {margin:0; font-family:'Poppins',sans-serif; background:#f5f7fb;}
+/* Buttons for TMS/CMS */
+.buttons button {
+  display:block; margin-bottom:15px; padding:12px 25px; border:none;
+  border-radius:25px; background:#2563eb; color:white; font-size:16px; width:250px; cursor:pointer;
 }
-
-/* HEADER */
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:10px 30px;
-background:#0f172a;
-flex-wrap:wrap;
+.buttons button:hover {opacity:0.9;}
+.tms-buttons .btn {
+  display:inline-block; padding:12px 30px; margin:10px; font-size:16px;
+  border-radius:8px; text-decoration:none; color:#fff; font-weight:bold; transition:0.3s;
 }
-
-.logo img{
-height:150px;
-margin-top:-40px;
-margin-bottom:-40px;
-}
-
-nav{
-display:flex;
-flex-wrap:wrap;
-}
-
-nav a{
-margin-left:20px;
-text-decoration:none;
-color:white;
-font-weight:500;
-}
-
-/* HERO */
-
-.hero{
-padding:70px 20px;
-background:linear-gradient(120deg,#6fb8ff,#d9ecff);
-}
-
-.hero h1{
-font-size:40px;
-color:#0d2a4d;
-}
-
-.hero p{
-font-size:18px;
-max-width:600px;
-color:#1a3d66;
-}
-
-.buttons{
-margin-top:30px;
-}
-
-.buttons button{
-display:block;
-margin-bottom:15px;
-padding:12px 25px;
-border:none;
-border-radius:25px;
-background:#2563eb;
-color:white;
-font-size:16px;
-width:250px;
-}
-
-/* PRODUCTS */
-
-.products{
-padding:60px 20px;
-background:white;
-}
-
-.products h2{
-font-size:30px;
-margin-bottom:30px;
-}
-
-.product-grid{
-display:flex;
-gap:30px;
-flex-wrap:wrap;
-}
-
-.card{
-background:#f8fbff;
-padding:25px;
-border-radius:10px;
-box-shadow:0 8px 25px rgba(0,0,0,0.08);
-width:300px;
-}
-
-/* FEATURES */
-
-.features{
-padding:60px 20px;
-background:#f5f7fb;
-}
-
-.features h2{
-text-align:center;
-margin-bottom:30px;
-}
-
-.feature-grid{
-display:flex;
-flex-wrap:wrap;
-gap:20px;
-justify-content:center;
-}
-
-.feature{
-background:white;
-padding:20px;
-width:220px;
-border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,0.05);
-text-align:center;
-}
-
-/* ABOUT */
-
-.about{
-padding:60px 20px;
-text-align:center;
-background:white;
-}
-
-/* CONTACT */
-
-.contact{
-padding:60px 20px;
-text-align:center;
-}
-
-/* FOOTER */
-
-footer{
-background:#0f172a;
-color:white;
-text-align:center;
-padding:30px;
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-header{
-flex-direction:column;
-align-items:flex-start;
-}
-
-.logo img{
-height:100px;
-margin:0;
-}
-
-nav{
-margin-top:10px;
-}
-
-nav a{
-margin:10px 10px 0 0;
-}
-
-.hero h1{
-font-size:32px;
-}
-
-.buttons button{
-width:100%;
-}
-
-.product-grid{
-flex-direction:column;
-}
-
-.card{
-width:100%;
-}
-
-.feature{
-width:100%;
-}
-
-}
-
+.btn-register {background-color:#007bff;}
+.btn-register:hover {background-color:#0056b3;}
+.btn-login {background-color:#28a745;}
+.btn-login:hover {background-color:#1e7e34;}
 </style>
-
 </head>
-
 <body>
 
-<header>
+<!-- Header -->
+<div id="header"></div>
 
-<div class="logo">
-<img src="devom-technologies-logo.png">
-</div>
-
-<nav>
-<a href="index.html">Home</a>
-<a href="products.html">Products</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</nav>
-
-</header>
-
-<section class="hero">
-
-<h1>Devॐ Technologies</h1>
-
-<p>
-Smart SaaS solutions for Transport and Cotton Industry.
-Digitizing traditional businesses with powerful software.
-</p>
-
-<div class="buttons">
-
-<button onclick="location.href='tms-choice.html'">
-Transport Management System
-</button>
-
-<button>
-Cotton Management System
-</button>
-
-</div>
-
+<!-- Hero Section -->
+<section class="hero" style="padding:70px 20px; background:linear-gradient(120deg,#6fb8ff,#d9ecff); text-align:center;">
+  <h1>Devॐ Technologies</h1>
+  <p>Smart SaaS solutions for Transport and Cotton Industry. Digitizing traditional businesses with powerful software.</p>
+  <div class="buttons">
+    <button onclick="location.href='tms-choice.html'">Transport Management System</button>
+    <button> Cotton Management System </button>
+  </div>
 </section>
 
-<section class="products">
-
-<h2>Our Software Solutions</h2>
-
-<div class="product-grid">
-
-<div class="card">
-
-<h3>Transport Management System</h3>
-
-<p>
-Manage trips, vehicles, drivers and transport business operations digitally.
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Cotton Management System</h3>
-
-<p>
-Manage cotton purchase, bale stock, quality tracking and dispatch.
-</p>
-
-</div>
-
-</div>
-
+<!-- Products Section -->
+<section class="products" style="padding:60px 20px; background:white;">
+  <h2>Our Software Solutions</h2>
+  <div class="product-grid" style="display:flex; gap:30px; flex-wrap:wrap;">
+    <div class="card" style="background:#f8fbff; padding:25px; border-radius:10px; width:300px;">
+      <h3>Transport Management System</h3>
+      <p>Manage trips, vehicles, drivers and transport business operations digitally.</p>
+    </div>
+    <div class="card" style="background:#f8fbff; padding:25px; border-radius:10px; width:300px;">
+      <h3>Cotton Management System</h3>
+      <p>Manage cotton purchase, bale stock, quality tracking and dispatch.</p>
+    </div>
+  </div>
 </section>
 
-<section class="features">
-
-<h2>Key Features</h2>
-
-<div class="feature-grid">
-
-<div class="feature">Trip Management</div>
-<div class="feature">Vehicle Records</div>
-<div class="feature">Driver Management</div>
-<div class="feature">Client Ledger</div>
-<div class="feature">Transporter Ledger</div>
-<div class="feature">Smart Reports</div>
-
-</div>
-
+<!-- Features Section -->
+<section class="features" style="padding:60px 20px; background:#f5f7fb;">
+  <h2 style="text-align:center;">Key Features</h2>
+  <div class="feature-grid" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Trip Management</div>
+    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Vehicle Records</div>
+    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Driver Management</div>
+    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Client Ledger</div>
+    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Transporter Ledger</div>
+    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Smart Reports</div>
+  </div>
 </section>
 
-<section class="about">
-
-<h2>About Devom Technologies</h2>
-
-<p>
-Devom Technologies builds modern SaaS platforms for transport and cotton industries.
-Our mission is to digitize traditional businesses with powerful yet simple software solutions.
-</p>
-
+<!-- About Section -->
+<section class="about" style="padding:60px 20px; text-align:center; background:white;">
+  <h2>About Devom Technologies</h2>
+  <p>Devom Technologies builds modern SaaS platforms for transport and cotton industries. Our mission is to digitize traditional businesses with powerful yet simple software solutions.</p>
 </section>
 
-<section class="contact">
-
-<h2>Contact</h2>
-
-<p>Email: support@devomtechnologies.com</p>
-<p>Phone: +91 9691150577</p>
-
+<!-- Contact Section -->
+<section class="contact" style="padding:60px 20px; text-align:center;">
+  <h2>Contact</h2>
+  <p>Email: support@devomtechnologies.com</p>
+  <p>Phone: +91 9691150577</p>
 </section>
 
-<footer>
+<!-- Footer -->
+<div id="footer"></div>
 
-<p>© 2026 Devom Technologies</p>
+<!-- JS to load header/footer -->
+<script>
+fetch('header.html')
+  .then(res => res.text())
+  .then(data => { document.getElementById('header').innerHTML = data; });
 
-</footer>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDZNtuiJET6l0IfBaybKtsDkqvzW4qaDxg",
-    authDomain: "devom-tms.firebaseapp.com",
-    projectId: "devom-tms",
-    storageBucket: "devom-tms.firebasestorage.app",
-    messagingSenderId: "772473003335",
-    appId: "1:772473003335:web:6f79d683f6ddaf30af4062",
-    measurementId: "G-SYXCN7JS8P"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+fetch('footer.html')
+  .then(res => res.text())
+  .then(data => { document.getElementById('footer').innerHTML = data; });
 </script>
-</body>
 
+<!-- Firebase Analytics (optional) -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDZNtuiJET6l0IfBaybKtsDkqvzW4qaDxg",
+  authDomain: "devom-tms.firebaseapp.com",
+  projectId: "devom-tms",
+  storageBucket: "devom-tms.firebasestorage.app",
+  messagingSenderId: "772473003335",
+  appId: "1:772473003335:web:6f79d683f6ddaf30af4062",
+  measurementId: "G-SYXCN7JS8P"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+</script>
+
+</body>
 </html>
-```
