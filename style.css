@@ -147,26 +147,30 @@ footer{
   text-align:center;
   margin-bottom:30px;
 }
-.form-section input{
+.form-section {
+  padding:60px 20px;
+  max-width:600px;   /* 500 → 600px for better width */
+  margin:auto;
+  background:white;
+  border-radius:12px;
+  box-shadow:0 5px 25px rgba(0,0,0,0.1);
+}
+
+.form-section input {
   width:100%;
-  padding:12px 15px;
-  margin-bottom:15px;
+  padding:15px 18px;   /* thoda bada padding for comfort */
+  margin-bottom:20px;  /* thoda spacing */
   border:1px solid #ccc;
-  border-radius:8px;
-  font-size:16px;
+  border-radius:10px;  /* thoda rounded */
+  font-size:17px;      /* slightly bigger font */
+  box-sizing:border-box;  /* ensures padding included in width */
 }
-.form-section button{
+
+.form-section button {
   width:100%;
-  padding:12px;
-  border:none;
-  border-radius:8px;
-  background:#007bff;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-}
-.form-section button:hover{
-  background:#0056b3;
+  padding:15px;        /* thoda bigger button */
+  font-size:17px;
+  border-radius:10px;
 }
 
 /* TMS Choice Buttons */
