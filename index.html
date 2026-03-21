@@ -4,25 +4,179 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Devom Technologies</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+
 <style>
-body {margin:0; font-family:'Poppins',sans-serif; background:#f5f7fb;}
-/* Buttons for TMS/CMS */
-.buttons button {
-  display:block; margin-bottom:15px; padding:12px 25px; border:none;
-  border-radius:25px; background:#2563eb; color:white; font-size:16px; width:250px; cursor:pointer;
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#f5f7fb;
 }
-.buttons button:hover {opacity:0.9;}
-.tms-buttons .btn {
-  display:inline-block; padding:12px 30px; margin:10px; font-size:16px;
-  border-radius:8px; text-decoration:none; color:#fff; font-weight:bold; transition:0.3s;
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 30px;
+  background:#0f172a;
+  flex-wrap:wrap;
 }
-.btn-register {background-color:#007bff;}
-.btn-register:hover {background-color:#0056b3;}
-.btn-login {background-color:#28a745;}
-.btn-login:hover {background-color:#1e7e34;}
+header .logo img{
+  height:150px;
+  margin-top:-40px;
+  margin-bottom:-40px;
+}
+header nav{
+  display:flex;
+  flex-wrap:wrap;
+}
+header nav a{
+  margin-left:20px;
+  text-decoration:none;
+  color:white;
+  font-weight:500;
+}
+
+/* HERO */
+.hero{
+  padding:70px 20px;
+  background:linear-gradient(120deg,#6fb8ff,#d9ecff);
+  text-align:center;
+}
+.hero h1{
+  font-size:40px;
+  color:#0d2a4d;
+}
+.hero p{
+  font-size:18px;
+  max-width:600px;
+  margin:auto;
+  color:#1a3d66;
+}
+.buttons{
+  margin-top:30px;
+}
+.buttons button{
+  display:block;
+  margin:10px auto;
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  background:#2563eb;
+  color:white;
+  font-size:16px;
+  width:250px;
+  cursor:pointer;
+}
+.buttons button:hover{
+  opacity:0.9;
+}
+
+/* PRODUCTS */
+.products{
+  padding:60px 20px;
+  background:white;
+}
+.products h2{
+  font-size:30px;
+  margin-bottom:30px;
+  text-align:center;
+}
+.product-grid{
+  display:flex;
+  gap:30px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.card{
+  background:#f8fbff;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  width:300px;
+}
+
+/* FEATURES */
+.features{
+  padding:60px 20px;
+  background:#f5f7fb;
+}
+.features h2{
+  text-align:center;
+  margin-bottom:30px;
+}
+.feature-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  justify-content:center;
+}
+.feature{
+  background:white;
+  padding:20px;
+  width:220px;
+  border-radius:10px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.05);
+  text-align:center;
+}
+
+/* ABOUT */
+.about{
+  padding:60px 20px;
+  text-align:center;
+  background:white;
+}
+
+/* CONTACT */
+.contact{
+  padding:60px 20px;
+  text-align:center;
+}
+
+/* FOOTER */
+footer{
+  background:#0f172a;
+  color:white;
+  text-align:center;
+  padding:30px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  header .logo img{
+    height:100px;
+    margin:0;
+  }
+  header nav{
+    margin-top:10px;
+  }
+  header nav a{
+    margin:10px 10px 0 0;
+  }
+  .hero h1{
+    font-size:32px;
+  }
+  .buttons button{
+    width:100%;
+  }
+  .product-grid{
+    flex-direction:column;
+  }
+  .card{
+    width:100%;
+  }
+  .feature{
+    width:100%;
+  }
+}
 </style>
+
 </head>
 <body>
 
@@ -30,24 +184,24 @@ body {margin:0; font-family:'Poppins',sans-serif; background:#f5f7fb;}
 <div id="header"></div>
 
 <!-- Hero Section -->
-<section class="hero" style="padding:70px 20px; background:linear-gradient(120deg,#6fb8ff,#d9ecff); text-align:center;">
+<section class="hero">
   <h1>Devॐ Technologies</h1>
   <p>Smart SaaS solutions for Transport and Cotton Industry. Digitizing traditional businesses with powerful software.</p>
   <div class="buttons">
     <button onclick="location.href='tms-choice.html'">Transport Management System</button>
-    <button> Cotton Management System </button>
+    <button>Cotton Management System</button>
   </div>
 </section>
 
 <!-- Products Section -->
-<section class="products" style="padding:60px 20px; background:white;">
+<section class="products">
   <h2>Our Software Solutions</h2>
-  <div class="product-grid" style="display:flex; gap:30px; flex-wrap:wrap;">
-    <div class="card" style="background:#f8fbff; padding:25px; border-radius:10px; width:300px;">
+  <div class="product-grid">
+    <div class="card">
       <h3>Transport Management System</h3>
       <p>Manage trips, vehicles, drivers and transport business operations digitally.</p>
     </div>
-    <div class="card" style="background:#f8fbff; padding:25px; border-radius:10px; width:300px;">
+    <div class="card">
       <h3>Cotton Management System</h3>
       <p>Manage cotton purchase, bale stock, quality tracking and dispatch.</p>
     </div>
@@ -55,26 +209,26 @@ body {margin:0; font-family:'Poppins',sans-serif; background:#f5f7fb;}
 </section>
 
 <!-- Features Section -->
-<section class="features" style="padding:60px 20px; background:#f5f7fb;">
-  <h2 style="text-align:center;">Key Features</h2>
-  <div class="feature-grid" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
-    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Trip Management</div>
-    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Vehicle Records</div>
-    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Driver Management</div>
-    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Client Ledger</div>
-    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Transporter Ledger</div>
-    <div class="feature" style="background:white; padding:20px; width:220px; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center;">Smart Reports</div>
+<section class="features">
+  <h2>Key Features</h2>
+  <div class="feature-grid">
+    <div class="feature">Trip Management</div>
+    <div class="feature">Vehicle Records</div>
+    <div class="feature">Driver Management</div>
+    <div class="feature">Client Ledger</div>
+    <div class="feature">Transporter Ledger</div>
+    <div class="feature">Smart Reports</div>
   </div>
 </section>
 
 <!-- About Section -->
-<section class="about" style="padding:60px 20px; text-align:center; background:white;">
+<section class="about">
   <h2>About Devom Technologies</h2>
   <p>Devom Technologies builds modern SaaS platforms for transport and cotton industries. Our mission is to digitize traditional businesses with powerful yet simple software solutions.</p>
 </section>
 
 <!-- Contact Section -->
-<section class="contact" style="padding:60px 20px; text-align:center;">
+<section class="contact">
   <h2>Contact</h2>
   <p>Email: support@devomtechnologies.com</p>
   <p>Phone: +91 9691150577</p>
@@ -94,7 +248,7 @@ fetch('footer.html')
   .then(data => { document.getElementById('footer').innerHTML = data; });
 </script>
 
-<!-- Firebase Analytics (optional) -->
+<!-- Firebase (optional) -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
