@@ -129,13 +129,20 @@ function login(){
 let user = document.getElementById("userid").value;
 let pass = document.getElementById("password").value;
 
-/* DEMO LOGIN */
-if(user === "admin" && pass === "1234"){
+if(user === "" || pass === ""){
+alert("Please fill all fields");
+return;
+}
+
+let paymentStatus = localStorage.getItem(user);
+
+if(paymentStatus !== "paid"){
+alert("Please complete payment first!");
+return;
+}
+
+alert("Login Successful!");
 window.location.href = "dashboard.html";
-}
-else{
-alert("Invalid User ID or Password");
-}
 
 }
 
