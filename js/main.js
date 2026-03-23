@@ -10,7 +10,7 @@ function verifyPayment() {
 
     localStorage.setItem(userId, "paid");
 
-    window.location.href = "tms_login.html";
+    window.location.href = "tms-login.html";
 }
 
 
