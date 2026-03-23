@@ -12,6 +12,7 @@
 
 <section class="form-section">
   <h2>Register for TMS</h2>
+
   <form onsubmit="return false;">
     <input type="text" placeholder="Owner Name" required>
     <input type="text" placeholder="Transport Name" required>
@@ -19,11 +20,17 @@
     <input type="tel" placeholder="Mobile Number" required>
     <input type="text" placeholder="City" required>
     <input type="text" placeholder="State" required>
-    <input type="text" placeholder="Create User ID" required>
+
+    <!-- IMPORTANT ID -->
+    <input type="text" id="userid" placeholder="Create User ID" required>
+
     <input type="password" placeholder="Create Password" required>
+
     <button type="button">Register</button>
   </form>
- <div style="text-align:center; margin-top:20px;">
+
+  <!-- PAYMENT SECTION -->
+  <div style="text-align:center; margin-top:20px;">
     <h3>Pay Registration Fee</h3>
 
     <img src="qr.png" width="200" />
@@ -31,8 +38,8 @@
     <p>After payment, click verify button</p>
 
     <button onclick="verifyPayment()">Verify Payment</button>
-</div>
-  
+  </div>
+
 </section>
 
 <div id="footer"></div>
@@ -41,10 +48,13 @@
 fetch('header.html')
   .then(res=>res.text())
   .then(data=>document.getElementById('header').innerHTML=data);
+
 fetch('footer.html')
   .then(res=>res.text())
   .then(data=>document.getElementById('footer').innerHTML=data);
 </script>
+
 <script src="js/main.js"></script>
+
 </body>
 </html>
