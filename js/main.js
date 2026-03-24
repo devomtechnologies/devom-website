@@ -1,128 +1,58 @@
-// REGISTER
-function registerUser() {
-    let userId = document.getElementById("userid").value;
-    let password = document.getElementById("password").value;
-    let owner = document.getElementById("owner").value;
-
-    const userData = {
-        userId,
-        password,
-        owner,
-        paymentDone: false
-    };
-
-    localStorage.setItem(userId, JSON.stringify(userData));
-    alert("Registration Successful!");
-}
-
-// VERIFY PAYMENT
-function verifyPayment() {
-    let userId = document.getElementById("paymentUserId").value;
-
-    let userData = JSON.parse(localStorage.getItem(userId));
-
-    if (!userData) {
-        alert("User not found!");
-        return;
-    }
-
-    userData.paymentDone = true;
-    localStorage.setItem(userId, JSON.stringify(userData));
-
-    alert("Payment Verified!");
-    window.location.href = "tms-login.html";
-}
-
-// LOGIN
-function login() {
-    let user = document.getElementById("userid").value;
-    let pass = document.getElementById("password").value;
-
-    let userData = JSON.parse(localStorage.getItem(user));
-
-    if (!userData || userData.password !== pass) {
-        alert("Invalid login");
-        return;
-    }
-
-    if (!userData.paymentDone) {
-        alert("Complete payment first");
-        return;
-    }
-
-    localStorage.setItem("loggedInUser", user);
-    window.location.href = "dashboard.html";
-}
-
-// CHECK LOGIN
+// LOGIN SYSTEM SAME
 function checkLogin() {
     if (!localStorage.getItem("loggedInUser")) {
         window.location.href = "tms-login.html";
     }
 }
 
-// LOAD DASHBOARD
 function loadDashboard() {
     let user = localStorage.getItem("loggedInUser");
-    let data = JSON.parse(localStorage.getItem(user));
-
-    document.getElementById("welcomeUser").innerText =
-        "Welcome, " + data.owner;
+    document.getElementById("welcomeUser").innerText = "Welcome " + user;
 }
 
-// LOGOUT
 function logout() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "tms-login.html";
 }
 
-// SAVE / UPDATE DISPATCH
+// SAVE DISPATCH
 function saveDispatch() {
+
     let dispatch = {
-        party1: document.getElementById("party1").value,
-        party2: document.getElementById("party2").value,
-        from: document.getElementById("from").value,
-        to: document.getElementById("to").value,
-        vehicleNo: document.getElementById("vehicleNo").value,
-        driverName: document.getElementById("driverName").value,
-        driverMobile: document.getElementById("driverMobile").value,
-        vehicleType: document.getElementById("vehicleType").value,
-        wheels: document.getElementById("wheels").value,
-        purchaseAmount: document.getElementById("purchaseAmount").value,
-        saleAmount: document.getElementById("saleAmount").value,
-        lrNumber: document.getElementById("lrNumber").value
+        party1: party1.value,
+        party2: party2.value,
+        from: from.value,
+        to: to.value,
+        vehicleNo: vehicleNo.value,
+        driverName: driverName.value,
+        driverMobile: driverMobile.value,
+        vehicleType: vehicleType.value,
+        wheels: wheels.value,
+        purchaseAmount: Number(purchaseAmount.value),
+        saleAmount: Number(saleAmount.value),
+        lrNumber: lrNumber.value,
+        date: new Date().toLocaleDateString()
     };
 
     let data = JSON.parse(localStorage.getItem("dispatchData")) || [];
-
     let editIndex = localStorage.getItem("editIndex");
 
     if (editIndex !== null) {
-
         let oldData = data[editIndex];
-
-        // 🔥 AUDIT LOG SAVE
         saveAuditLog(oldData, dispatch);
-
         data[editIndex] = dispatch;
         localStorage.removeItem("editIndex");
-        alert("Updated!");
-
     } else {
-
         data.push(dispatch);
-        alert("Saved!");
     }
 
     localStorage.setItem("dispatchData", JSON.stringify(data));
-
     location.reload();
 }
 
-// LOAD DISPATCH LIST
+// LOAD DISPATCH
 function loadDispatchList() {
     let data = JSON.parse(localStorage.getItem("dispatchData")) || [];
-
     let table = document.querySelector("#dispatchTable tbody");
     table.innerHTML = "";
 
@@ -131,51 +61,102 @@ function loadDispatchList() {
 
         table.innerHTML += `
         <tr>
-          <td>${d.vehicleNo}</td>
-          <td>${d.from} → ${d.to}</td>
-          <td>${d.party1}</td>
-          <td>${d.party2}</td>
-          <td>${d.purchaseAmount}</td>
-          <td>${d.saleAmount}</td>
-          <td>${profit}</td>
-          <td><button onclick="editDispatch(${i})">Edit</button></td>
-        </tr>
-        `;
+        <td>${d.vehicleNo}</td>
+        <td>${d.from} → ${d.to}</td>
+        <td>${d.party1}</td>
+        <td>${d.party2}</td>
+        <td>${d.purchaseAmount}</td>
+        <td>${d.saleAmount}</td>
+        <td>${profit}</td>
+        <td><button onclick="editDispatch(${i})">Edit</button></td>
+        </tr>`;
+    });
+
+    loadPartyDropdown(data);
+}
+
+// EDIT
+function editDispatch(i) {
+    let d = JSON.parse(localStorage.getItem("dispatchData"))[i];
+
+    party1.value = d.party1;
+    party2.value = d.party2;
+    from.value = d.from;
+    to.value = d.to;
+    vehicleNo.value = d.vehicleNo;
+    driverName.value = d.driverName;
+    driverMobile.value = d.driverMobile;
+    vehicleType.value = d.vehicleType;
+    wheels.value = d.wheels;
+    purchaseAmount.value = d.purchaseAmount;
+    saleAmount.value = d.saleAmount;
+    lrNumber.value = d.lrNumber;
+
+    localStorage.setItem("editIndex", i);
+}
+
+// PARTY DROPDOWN
+function loadPartyDropdown(data) {
+    let select = document.getElementById("partyFilter");
+    let parties = new Set();
+
+    data.forEach(d => {
+        parties.add(d.party1);
+        parties.add(d.party2);
+    });
+
+    select.innerHTML = `<option value="">Select Party</option>`;
+
+    parties.forEach(p => {
+        select.innerHTML += `<option value="${p}">${p}</option>`;
     });
 }
 
-// EDIT DISPATCH
-function editDispatch(index) {
-    let data = JSON.parse(localStorage.getItem("dispatchData"));
-    let d = data[index];
+// LEDGER
+function loadLedger() {
+    let data = JSON.parse(localStorage.getItem("dispatchData")) || [];
+    let party = document.getElementById("partyFilter").value;
 
-    document.getElementById("party1").value = d.party1;
-    document.getElementById("party2").value = d.party2;
-    document.getElementById("from").value = d.from;
-    document.getElementById("to").value = d.to;
-    document.getElementById("vehicleNo").value = d.vehicleNo;
-    document.getElementById("driverName").value = d.driverName;
-    document.getElementById("driverMobile").value = d.driverMobile;
-    document.getElementById("vehicleType").value = d.vehicleType;
-    document.getElementById("wheels").value = d.wheels;
-    document.getElementById("purchaseAmount").value = d.purchaseAmount;
-    document.getElementById("saleAmount").value = d.saleAmount;
-    document.getElementById("lrNumber").value = d.lrNumber;
+    let table = document.querySelector("#ledgerTable tbody");
+    table.innerHTML = "";
 
-    localStorage.setItem("editIndex", index);
+    let totalPurchase = 0, totalSale = 0;
+
+    data.forEach(d => {
+        if (party === "" || d.party1 === party || d.party2 === party) {
+
+            let profit = d.saleAmount - d.purchaseAmount;
+
+            totalPurchase += d.purchaseAmount;
+            totalSale += d.saleAmount;
+
+            table.innerHTML += `
+            <tr>
+            <td>${d.date}</td>
+            <td>${d.vehicleNo}</td>
+            <td>${d.from} → ${d.to}</td>
+            <td>${d.purchaseAmount}</td>
+            <td>${d.saleAmount}</td>
+            <td>${profit}</td>
+            </tr>`;
+        }
+    });
+
+    document.getElementById("ledgerSummary").innerText =
+        "Total Purchase: " + totalPurchase +
+        " | Total Sale: " + totalSale +
+        " | Profit: " + (totalSale - totalPurchase);
 }
 
-// SAVE AUDIT LOG
+// AUDIT
 function saveAuditLog(oldData, newData) {
     let logs = JSON.parse(localStorage.getItem("auditLogs")) || [];
-
     let time = new Date().toLocaleString();
 
     for (let key in oldData) {
         if (oldData[key] != newData[key]) {
             logs.push({
-                time: time,
-                vehicle: oldData.vehicleNo,
+                time, vehicle: oldData.vehicleNo,
                 field: key,
                 oldValue: oldData[key],
                 newValue: newData[key]
@@ -186,24 +167,19 @@ function saveAuditLog(oldData, newData) {
     localStorage.setItem("auditLogs", JSON.stringify(logs));
 }
 
-// LOAD AUDIT LOG
 function loadAuditLog() {
     let logs = JSON.parse(localStorage.getItem("auditLogs")) || [];
-
     let table = document.querySelector("#auditTable tbody");
-    if (!table) return;
-
     table.innerHTML = "";
 
-    logs.reverse().forEach(log => {
+    logs.reverse().forEach(l => {
         table.innerHTML += `
         <tr>
-            <td>${log.time}</td>
-            <td>${log.vehicle}</td>
-            <td>${log.field}</td>
-            <td>${log.oldValue}</td>
-            <td>${log.newValue}</td>
-        </tr>
-        `;
+        <td>${l.time}</td>
+        <td>${l.vehicle}</td>
+        <td>${l.field}</td>
+        <td>${l.oldValue}</td>
+        <td>${l.newValue}</td>
+        </tr>`;
     });
 }
