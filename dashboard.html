@@ -4,20 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard</title>
+
 <link rel="stylesheet" href="style.css">
+
+<style>
+#printArea {
+    display:none;
+}
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #printArea, #printArea * {
+        visibility: visible;
+    }
+    #printArea {
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+    }
+}
+</style>
+
 </head>
 
 <body onload="checkLogin(); loadDashboard(); loadDispatchList(); loadAuditLog(); loadLedger();">
 
-<div id="header"></div>
-
-<section style="padding:20px; text-align:center;">
-
-<h2 id="welcomeUser">Welcome</h2>
-
+<h2 id="welcomeUser"></h2>
 <button onclick="logout()">Logout</button>
 
-<!-- DISPATCH FORM -->
+<!-- DISPATCH -->
 <div class="card">
 <h3>New Dispatch</h3>
 
@@ -38,6 +55,19 @@
 <button onclick="saveDispatch()">Save</button>
 </div>
 
+<!-- LEDGER + INVOICE -->
+<h3>Generate Invoice</h3>
+
+<select id="partyFilter" onchange="loadLedger()">
+<option value="">Select Party</option>
+</select>
+
+<button onclick="generateInvoice()">Generate Invoice</button>
+<button onclick="printInvoice()">Print / PDF</button>
+
+<!-- PRINT AREA -->
+<div id="printArea"></div>
+
 <!-- DISPATCH LIST -->
 <h3>Dispatch List</h3>
 <table border="1" width="100%" id="dispatchTable">
@@ -56,32 +86,8 @@
 <tbody></tbody>
 </table>
 
-<!-- LEDGER -->
-<h3 style="margin-top:40px;">Party Ledger</h3>
-
-<select id="partyFilter" onchange="loadLedger()">
-<option value="">Select Party</option>
-</select>
-
-<table border="1" width="100%" id="ledgerTable">
-<thead>
-<tr>
-<th>Date</th>
-<th>Vehicle</th>
-<th>Route</th>
-<th>Purchase</th>
-<th>Sale</th>
-<th>Profit</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-
-<h3 id="ledgerSummary"></h3>
-
-<!-- AUDIT LOG -->
-<h3 style="margin-top:40px;">Audit Log</h3>
-
+<!-- AUDIT -->
+<h3>Audit Log</h3>
 <table border="1" width="100%" id="auditTable">
 <thead>
 <tr>
@@ -94,8 +100,6 @@
 </thead>
 <tbody></tbody>
 </table>
-
-</section>
 
 <script src="js/main.js"></script>
 
