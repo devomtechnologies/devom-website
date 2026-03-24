@@ -8,7 +8,8 @@ function checkLogin() {
 
 function loadDashboard() {
     let user = localStorage.getItem("loggedInUser");
-    document.getElementById("welcomeUser").innerText = "Welcome " + user;
+    let el = document.getElementById("welcomeUser");
+    if (el) el.innerText = "Welcome " + user;
 }
 
 function logout() {
@@ -16,64 +17,62 @@ function logout() {
     window.location.href = "tms-login.html";
 }
 
-// ================= SAVE DISPATCH =================
+// ================= SAVE DISPATCH (CLOUD) =================
 
-function saveDispatch() {
+async function saveDispatch() {
 
     let dispatch = {
-        party1: party1.value,
-        party2: party2.value,
-        from: from.value,
-        to: to.value,
-        vehicleNo: vehicleNo.value,
-        driverName: driverName.value,
-        driverMobile: driverMobile.value,
-        vehicleType: vehicleType.value,
-        wheels: wheels.value,
-        purchaseAmount: Number(purchaseAmount.value),
-        saleAmount: Number(saleAmount.value),
-        lrNumber: lrNumber.value,
-        date: new Date().toLocaleDateString()
+        party1: document.getElementById("party1").value,
+        party2: document.getElementById("party2").value,
+        from: document.getElementById("from").value,
+        to: document.getElementById("to").value,
+        vehicleNo: document.getElementById("vehicleNo").value,
+        driverName: document.getElementById("driverName").value,
+        driverMobile: document.getElementById("driverMobile").value,
+        vehicleType: document.getElementById("vehicleType").value,
+        wheels: document.getElementById("wheels").value,
+        purchaseAmount: Number(document.getElementById("purchaseAmount").value),
+        saleAmount: Number(document.getElementById("saleAmount").value),
+        lrNumber: document.getElementById("lrNumber").value,
+        date: new Date().toLocaleString()
     };
 
-    let data = JSON.parse(localStorage.getItem("dispatchData")) || [];
-    let editIndex = localStorage.getItem("editIndex");
+    let editId = localStorage.getItem("editId");
 
-    if (editIndex !== null) {
+    if (editId) {
+        let oldDoc = await db.collection("dispatch").doc(editId).get();
+        let oldData = oldDoc.data();
 
-        let oldData = data[editIndex];
+        await saveAuditLog(oldData, dispatch);
 
-        // 🔥 AUDIT LOG SAVE
-        saveAuditLog(oldData, dispatch);
+        await db.collection("dispatch").doc(editId).update(dispatch);
 
-        data[editIndex] = dispatch;
-        localStorage.removeItem("editIndex");
+        localStorage.removeItem("editId");
 
         alert("Updated Successfully!");
 
     } else {
-
-        data.push(dispatch);
-        alert("Saved Successfully!");
+        await db.collection("dispatch").add(dispatch);
+        alert("Saved to Cloud!");
     }
-
-    localStorage.setItem("dispatchData", JSON.stringify(data));
 
     location.reload();
 }
 
 // ================= LOAD DISPATCH =================
 
-function loadDispatchList() {
-    let data = JSON.parse(localStorage.getItem("dispatchData")) || [];
-    let table = document.querySelector("#dispatchTable tbody");
+async function loadDispatchList() {
 
+    let table = document.querySelector("#dispatchTable tbody");
     if (!table) return;
 
     table.innerHTML = "";
 
-    data.forEach((d, i) => {
+    let snapshot = await db.collection("dispatch").get();
 
+    snapshot.forEach(doc => {
+
+        let d = doc.data();
         let profit = d.saleAmount - d.purchaseAmount;
 
         table.innerHTML += `
@@ -85,105 +84,58 @@ function loadDispatchList() {
         <td>${d.purchaseAmount}</td>
         <td>${d.saleAmount}</td>
         <td>${profit}</td>
-        <td><button onclick="editDispatch(${i})">Edit</button></td>
+        <td>
+            <button onclick="editDispatch('${doc.id}')">Edit</button>
+            <button onclick="deleteDispatch('${doc.id}')">Delete</button>
+        </td>
         </tr>`;
     });
-
-    loadPartyDropdown(data);
 }
 
 // ================= EDIT =================
 
-function editDispatch(i) {
-    let d = JSON.parse(localStorage.getItem("dispatchData"))[i];
+async function editDispatch(id) {
 
-    party1.value = d.party1;
-    party2.value = d.party2;
-    from.value = d.from;
-    to.value = d.to;
-    vehicleNo.value = d.vehicleNo;
-    driverName.value = d.driverName;
-    driverMobile.value = d.driverMobile;
-    vehicleType.value = d.vehicleType;
-    wheels.value = d.wheels;
-    purchaseAmount.value = d.purchaseAmount;
-    saleAmount.value = d.saleAmount;
-    lrNumber.value = d.lrNumber;
+    let doc = await db.collection("dispatch").doc(id).get();
+    let d = doc.data();
 
-    localStorage.setItem("editIndex", i);
+    document.getElementById("party1").value = d.party1;
+    document.getElementById("party2").value = d.party2;
+    document.getElementById("from").value = d.from;
+    document.getElementById("to").value = d.to;
+    document.getElementById("vehicleNo").value = d.vehicleNo;
+    document.getElementById("driverName").value = d.driverName;
+    document.getElementById("driverMobile").value = d.driverMobile;
+    document.getElementById("vehicleType").value = d.vehicleType;
+    document.getElementById("wheels").value = d.wheels;
+    document.getElementById("purchaseAmount").value = d.purchaseAmount;
+    document.getElementById("saleAmount").value = d.saleAmount;
+    document.getElementById("lrNumber").value = d.lrNumber;
+
+    localStorage.setItem("editId", id);
 }
 
-// ================= PARTY DROPDOWN =================
+// ================= DELETE =================
 
-function loadPartyDropdown(data) {
-    let select = document.getElementById("partyFilter");
-    if (!select) return;
+async function deleteDispatch(id) {
 
-    let parties = new Set();
-
-    data.forEach(d => {
-        if (d.party1) parties.add(d.party1);
-        if (d.party2) parties.add(d.party2);
-    });
-
-    select.innerHTML = `<option value="">Select Party</option>`;
-
-    parties.forEach(p => {
-        select.innerHTML += `<option value="${p}">${p}</option>`;
-    });
-}
-
-// ================= LEDGER =================
-
-function loadLedger() {
-    let data = JSON.parse(localStorage.getItem("dispatchData")) || [];
-    let party = document.getElementById("partyFilter")?.value;
-
-    let table = document.querySelector("#ledgerTable tbody");
-    if (!table) return;
-
-    table.innerHTML = "";
-
-    let totalPurchase = 0, totalSale = 0;
-
-    data.forEach(d => {
-        if (!party || d.party1 === party || d.party2 === party) {
-
-            let profit = d.saleAmount - d.purchaseAmount;
-
-            totalPurchase += d.purchaseAmount;
-            totalSale += d.saleAmount;
-
-            table.innerHTML += `
-            <tr>
-            <td>${d.date}</td>
-            <td>${d.vehicleNo}</td>
-            <td>${d.from} → ${d.to}</td>
-            <td>${d.purchaseAmount}</td>
-            <td>${d.saleAmount}</td>
-            <td>${profit}</td>
-            </tr>`;
-        }
-    });
-
-    let summary = document.getElementById("ledgerSummary");
-    if (summary) {
-        summary.innerText =
-            "Total Purchase: " + totalPurchase +
-            " | Total Sale: " + totalSale +
-            " | Profit: " + (totalSale - totalPurchase);
+    if (confirm("Delete this record?")) {
+        await db.collection("dispatch").doc(id).delete();
+        alert("Deleted!");
+        location.reload();
     }
 }
 
-// ================= AUDIT =================
+// ================= AUDIT LOG =================
 
-function saveAuditLog(oldData, newData) {
-    let logs = JSON.parse(localStorage.getItem("auditLogs")) || [];
+async function saveAuditLog(oldData, newData) {
+
     let time = new Date().toLocaleString();
 
     for (let key in oldData) {
         if (oldData[key] != newData[key]) {
-            logs.push({
+
+            await db.collection("auditLogs").add({
                 time,
                 vehicle: oldData.vehicleNo,
                 field: key,
@@ -192,19 +144,20 @@ function saveAuditLog(oldData, newData) {
             });
         }
     }
-
-    localStorage.setItem("auditLogs", JSON.stringify(logs));
 }
 
-function loadAuditLog() {
-    let logs = JSON.parse(localStorage.getItem("auditLogs")) || [];
-    let table = document.querySelector("#auditTable tbody");
+async function loadAuditLog() {
 
+    let table = document.querySelector("#auditTable tbody");
     if (!table) return;
 
     table.innerHTML = "";
 
-    logs.reverse().forEach(l => {
+    let snapshot = await db.collection("auditLogs").get();
+
+    snapshot.forEach(doc => {
+        let l = doc.data();
+
         table.innerHTML += `
         <tr>
         <td>${l.time}</td>
@@ -216,16 +169,58 @@ function loadAuditLog() {
     });
 }
 
+// ================= LEDGER =================
+
+async function loadLedger() {
+
+    let table = document.querySelector("#ledgerTable tbody");
+    if (!table) return;
+
+    table.innerHTML = "";
+
+    let totalPurchase = 0, totalSale = 0;
+
+    let snapshot = await db.collection("dispatch").get();
+
+    snapshot.forEach(doc => {
+
+        let d = doc.data();
+        let profit = d.saleAmount - d.purchaseAmount;
+
+        totalPurchase += d.purchaseAmount;
+        totalSale += d.saleAmount;
+
+        table.innerHTML += `
+        <tr>
+        <td>${d.date}</td>
+        <td>${d.vehicleNo}</td>
+        <td>${d.from} → ${d.to}</td>
+        <td>${d.purchaseAmount}</td>
+        <td>${d.saleAmount}</td>
+        <td>${profit}</td>
+        </tr>`;
+    });
+
+    let summary = document.getElementById("ledgerSummary");
+    if (summary) {
+        summary.innerText =
+            "Total Purchase: " + totalPurchase +
+            " | Total Sale: " + totalSale +
+            " | Profit: " + (totalSale - totalPurchase);
+    }
+}
+
 // ================= INVOICE =================
 
-function generateInvoice() {
+async function generateInvoice() {
+
     let party = document.getElementById("partyFilter").value;
-    let data = JSON.parse(localStorage.getItem("dispatchData")) || [];
+    let snapshot = await db.collection("dispatch").get();
 
     let html = `
     <h2 style="text-align:center;">DEVOM TRANSPORT</h2>
     <h3>Invoice - ${party}</h3>
-    <table border="1" width="100%" style="border-collapse:collapse;">
+    <table border="1" width="100%">
     <tr>
     <th>Date</th>
     <th>Vehicle</th>
@@ -235,19 +230,20 @@ function generateInvoice() {
 
     let total = 0;
 
-    data.forEach(d => {
+    snapshot.forEach(doc => {
+
+        let d = doc.data();
+
         if (d.party1 === party || d.party2 === party) {
 
-            let amount = d.saleAmount;
-
-            total += amount;
+            total += d.saleAmount;
 
             html += `
             <tr>
             <td>${d.date}</td>
             <td>${d.vehicleNo}</td>
             <td>${d.from} → ${d.to}</td>
-            <td>${amount}</td>
+            <td>${d.saleAmount}</td>
             </tr>`;
         }
     });
