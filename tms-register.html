@@ -14,19 +14,20 @@
   <h2>Register for TMS</h2>
 
   <form onsubmit="return false;">
-    <input type="text" placeholder="Owner Name" required>
-    <input type="text" placeholder="Transport Name" required>
-    <input type="email" placeholder="Email" required>
-    <input type="tel" placeholder="Mobile Number" required>
-    <input type="text" placeholder="City" required>
-    <input type="text" placeholder="State" required>
 
-    <!-- IMPORTANT ID -->
+    <input type="text" id="owner" placeholder="Owner Name" required>
+    <input type="text" id="transport" placeholder="Transport Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="tel" id="mobile" placeholder="Mobile Number" required>
+    <input type="text" id="city" placeholder="City" required>
+    <input type="text" id="state" placeholder="State" required>
+
+    <!-- IMPORTANT -->
     <input type="text" id="userid" placeholder="Create User ID" required>
+    <input type="password" id="password" placeholder="Create Password" required>
 
-    <input type="password" placeholder="Create Password" required>
+    <button type="button" onclick="registerUser()">Register</button>
 
-    <button type="button">Register</button>
   </form>
 
   <!-- PAYMENT SECTION -->
@@ -36,6 +37,8 @@
     <img src="qr.png" width="200" />
 
     <p>After payment, click verify button</p>
+
+    <input type="text" id="userid" placeholder="Enter User ID again">
 
     <button onclick="verifyPayment()">Verify Payment</button>
   </div>
