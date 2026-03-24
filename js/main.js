@@ -2,6 +2,7 @@
 function registerUser() {
     let userId = document.getElementById("userid").value;
     let password = document.getElementById("password").value;
+    let owner = document.getElementById("owner").value;
 
     if (userId === "" || password === "") {
         alert("Please fill all fields");
@@ -11,6 +12,7 @@ function registerUser() {
     const userData = {
         userId: userId,
         password: password,
+        owner: owner,
         paymentDone: false
     };
 
@@ -73,6 +75,43 @@ function login() {
         return;
     }
 
+    // 👉 SESSION SAVE
+    localStorage.setItem("loggedInUser", user);
+
     alert("Login Successful!");
     window.location.href = "dashboard.html";
+}
+
+
+// CHECK LOGIN (Dashboard security)
+function checkLogin() {
+    let user = localStorage.getItem("loggedInUser");
+
+    if (!user) {
+        alert("Please login first!");
+        window.location.href = "tms-login.html";
+    }
+}
+
+
+// SHOW USER NAME
+function loadDashboard() {
+    let user = localStorage.getItem("loggedInUser");
+
+    if (!user) return;
+
+    let userData = JSON.parse(localStorage.getItem(user));
+
+    if (userData) {
+        document.getElementById("welcomeUser").innerText =
+            "Welcome, " + userData.owner;
+    }
+}
+
+
+// LOGOUT
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    alert("Logged out successfully");
+    window.location.href = "tms-login.html";
 }
