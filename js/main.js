@@ -1,4 +1,4 @@
-// REGISTER USER
+// ================= REGISTER =================
 function registerUser() {
     let userId = document.getElementById("userid").value;
     let password = document.getElementById("password").value;
@@ -22,7 +22,7 @@ function registerUser() {
 }
 
 
-// VERIFY PAYMENT
+// ================= VERIFY PAYMENT =================
 function verifyPayment() {
     let userId = document.getElementById("paymentUserId").value;
 
@@ -48,7 +48,7 @@ function verifyPayment() {
 }
 
 
-// LOGIN
+// ================= LOGIN =================
 function login() {
     let user = document.getElementById("userid").value;
     let pass = document.getElementById("password").value;
@@ -75,7 +75,7 @@ function login() {
         return;
     }
 
-    // 👉 SESSION SAVE
+    // SESSION SAVE
     localStorage.setItem("loggedInUser", user);
 
     alert("Login Successful!");
@@ -83,7 +83,7 @@ function login() {
 }
 
 
-// CHECK LOGIN (Dashboard security)
+// ================= CHECK LOGIN =================
 function checkLogin() {
     let user = localStorage.getItem("loggedInUser");
 
@@ -94,7 +94,7 @@ function checkLogin() {
 }
 
 
-// SHOW USER NAME
+// ================= LOAD DASHBOARD =================
 function loadDashboard() {
     let user = localStorage.getItem("loggedInUser");
 
@@ -109,9 +109,38 @@ function loadDashboard() {
 }
 
 
-// LOGOUT
+// ================= LOGOUT =================
 function logout() {
     localStorage.removeItem("loggedInUser");
     alert("Logged out successfully");
     window.location.href = "tms-login.html";
+}
+
+
+// ================= SAVE DISPATCH =================
+function saveDispatch() {
+    let dispatch = {
+        party1: document.getElementById("party1").value,
+        party2: document.getElementById("party2").value,
+        from: document.getElementById("from").value,
+        to: document.getElementById("to").value,
+        vehicleNo: document.getElementById("vehicleNo").value,
+        driverName: document.getElementById("driverName").value,
+        driverMobile: document.getElementById("driverMobile").value,
+        vehicleType: document.getElementById("vehicleType").value,
+        wheels: document.getElementById("wheels").value,
+        purchaseAmount: document.getElementById("purchaseAmount").value,
+        saleAmount: document.getElementById("saleAmount").value,
+        lrNumber: document.getElementById("lrNumber").value
+    };
+
+    let allDispatch = JSON.parse(localStorage.getItem("dispatchData")) || [];
+
+    allDispatch.push(dispatch);
+
+    localStorage.setItem("dispatchData", JSON.stringify(allDispatch));
+
+    alert("Dispatch Saved Successfully!");
+
+    location.reload();
 }
