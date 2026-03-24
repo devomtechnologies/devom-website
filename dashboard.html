@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="checkLogin(); loadDashboard();">
+<body onload="checkLogin(); loadDashboard(); loadDispatchList();">
 
 <div id="header"></div>
 
@@ -19,47 +19,50 @@
     Logout
   </button>
 
-  <!-- 🔥 NEW DISPATCH ENTRY -->
-  <div class="card" style="margin-top:20px; padding:20px;">
-
+  <!-- NEW DISPATCH -->
+  <div class="card" style="padding:20px; margin-top:20px;">
     <h3>New Dispatch Entry</h3>
 
-    <input type="text" id="party1" placeholder="1st Party (Client)">
-    <input type="text" id="party2" placeholder="2nd Party (Transporter)">
+    <input type="text" id="party1" placeholder="1st Party">
+    <input type="text" id="party2" placeholder="2nd Party">
 
-    <input type="text" id="from" placeholder="From Location">
-    <input type="text" id="to" placeholder="To Location">
+    <input type="text" id="from" placeholder="From">
+    <input type="text" id="to" placeholder="To">
 
-    <input type="text" id="vehicleNo" placeholder="Vehicle Number">
+    <input type="text" id="vehicleNo" placeholder="Vehicle No">
     <input type="text" id="driverName" placeholder="Driver Name">
     <input type="text" id="driverMobile" placeholder="Driver Mobile">
 
-    <input type="text" id="vehicleType" placeholder="Vehicle Type (Open/Container)">
-    <input type="number" id="wheels" placeholder="Number of Wheels">
+    <input type="text" id="vehicleType" placeholder="Vehicle Type">
+    <input type="number" id="wheels" placeholder="Wheels">
 
-    <input type="number" id="purchaseAmount" placeholder="Purchase Amount (Liya)">
-    <input type="number" id="saleAmount" placeholder="Sale Amount (Diya)">
+    <input type="number" id="purchaseAmount" placeholder="Purchase Amount">
+    <input type="number" id="saleAmount" placeholder="Sale Amount">
 
     <input type="text" id="lrNumber" placeholder="LR Number">
 
     <br><br>
-
-    <button onclick="saveDispatch()" style="padding:10px 20px;">
-      Save Dispatch
-    </button>
-
+    <button onclick="saveDispatch()">Save Dispatch</button>
   </div>
 
-  <!-- EXISTING SECTIONS -->
-  <div class="card">
-    <h3>Manage Trips</h3>
-    <p>Coming Soon</p>
-  </div>
+  <!-- DISPATCH LIST -->
+  <h3 style="margin-top:30px;">Dispatch List</h3>
 
-  <div class="card">
-    <h3>Ledger</h3>
-    <p>Coming Soon</p>
-  </div>
+  <table border="1" width="100%" id="dispatchTable">
+    <thead>
+      <tr>
+        <th>Vehicle</th>
+        <th>Route</th>
+        <th>Party1</th>
+        <th>Party2</th>
+        <th>Purchase</th>
+        <th>Sale</th>
+        <th>Profit</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
 </section>
 
