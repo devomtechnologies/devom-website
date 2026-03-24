@@ -98,10 +98,18 @@ function saveDispatch() {
     let editIndex = localStorage.getItem("editIndex");
 
     if (editIndex !== null) {
+
+        let oldData = data[editIndex];
+
+        // 🔥 AUDIT LOG SAVE
+        saveAuditLog(oldData, dispatch);
+
         data[editIndex] = dispatch;
         localStorage.removeItem("editIndex");
         alert("Updated!");
+
     } else {
+
         data.push(dispatch);
         alert("Saved!");
     }
@@ -155,4 +163,47 @@ function editDispatch(index) {
     document.getElementById("lrNumber").value = d.lrNumber;
 
     localStorage.setItem("editIndex", index);
+}
+
+// SAVE AUDIT LOG
+function saveAuditLog(oldData, newData) {
+    let logs = JSON.parse(localStorage.getItem("auditLogs")) || [];
+
+    let time = new Date().toLocaleString();
+
+    for (let key in oldData) {
+        if (oldData[key] != newData[key]) {
+            logs.push({
+                time: time,
+                vehicle: oldData.vehicleNo,
+                field: key,
+                oldValue: oldData[key],
+                newValue: newData[key]
+            });
+        }
+    }
+
+    localStorage.setItem("auditLogs", JSON.stringify(logs));
+}
+
+// LOAD AUDIT LOG
+function loadAuditLog() {
+    let logs = JSON.parse(localStorage.getItem("auditLogs")) || [];
+
+    let table = document.querySelector("#auditTable tbody");
+    if (!table) return;
+
+    table.innerHTML = "";
+
+    logs.reverse().forEach(log => {
+        table.innerHTML += `
+        <tr>
+            <td>${log.time}</td>
+            <td>${log.vehicle}</td>
+            <td>${log.field}</td>
+            <td>${log.oldValue}</td>
+            <td>${log.newValue}</td>
+        </tr>
+        `;
+    });
 }
