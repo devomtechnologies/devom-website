@@ -12,25 +12,36 @@
 
 <section class="form-section">
   <h2>TMS Login</h2>
-  <form>
-    <input type="text" id="userid" placeholder="User ID">
-<input type="password" id="password" placeholder="Password">
 
-<button onclick="login()">Login</button>
+  <form onsubmit="return false;">
+
+    <input type="text" id="userid" placeholder="Enter User ID" required>
+
+    <input type="password" id="password" placeholder="Enter Password" required>
+
+    <button type="button" onclick="login()">Login</button>
+
   </form>
+
+  <p style="text-align:center; margin-top:15px;">
+    Don't have account? <a href="tms-register.html">Register here</a>
+  </p>
+
 </section>
 
 <div id="footer"></div>
 
 <script>
-  <script src="js/main.js"></script>
 fetch('header.html')
   .then(res=>res.text())
   .then(data=>document.getElementById('header').innerHTML=data);
+
 fetch('footer.html')
   .then(res=>res.text())
   .then(data=>document.getElementById('footer').innerHTML=data);
 </script>
+
+<script src="js/main.js"></script>
 
 </body>
 </html>
