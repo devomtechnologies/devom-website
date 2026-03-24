@@ -1,35 +1,23 @@
-// ================= REGISTER =================
+// REGISTER
 function registerUser() {
     let userId = document.getElementById("userid").value;
     let password = document.getElementById("password").value;
     let owner = document.getElementById("owner").value;
 
-    if (userId === "" || password === "") {
-        alert("Please fill all fields");
-        return;
-    }
-
     const userData = {
-        userId: userId,
-        password: password,
-        owner: owner,
+        userId,
+        password,
+        owner,
         paymentDone: false
     };
 
     localStorage.setItem(userId, JSON.stringify(userData));
-
-    alert("Registration Successful! Now complete payment below.");
+    alert("Registration Successful!");
 }
 
-
-// ================= VERIFY PAYMENT =================
+// VERIFY PAYMENT
 function verifyPayment() {
     let userId = document.getElementById("paymentUserId").value;
-
-    if (userId === "") {
-        alert("Enter User ID first");
-        return;
-    }
 
     let userData = JSON.parse(localStorage.getItem(userId));
 
@@ -39,85 +27,56 @@ function verifyPayment() {
     }
 
     userData.paymentDone = true;
-
     localStorage.setItem(userId, JSON.stringify(userData));
 
-    alert("Payment Verified Successfully!");
-
+    alert("Payment Verified!");
     window.location.href = "tms-login.html";
 }
 
-
-// ================= LOGIN =================
+// LOGIN
 function login() {
     let user = document.getElementById("userid").value;
     let pass = document.getElementById("password").value;
 
-    if (user === "" || pass === "") {
-        alert("Please fill all fields");
-        return;
-    }
-
     let userData = JSON.parse(localStorage.getItem(user));
 
-    if (!userData) {
-        alert("User not found!");
-        return;
-    }
-
-    if (userData.password !== pass) {
-        alert("Wrong password!");
+    if (!userData || userData.password !== pass) {
+        alert("Invalid login");
         return;
     }
 
     if (!userData.paymentDone) {
-        alert("Please complete payment first!");
+        alert("Complete payment first");
         return;
     }
 
-    // SESSION SAVE
     localStorage.setItem("loggedInUser", user);
-
-    alert("Login Successful!");
     window.location.href = "dashboard.html";
 }
 
-
-// ================= CHECK LOGIN =================
+// CHECK LOGIN
 function checkLogin() {
-    let user = localStorage.getItem("loggedInUser");
-
-    if (!user) {
-        alert("Please login first!");
+    if (!localStorage.getItem("loggedInUser")) {
         window.location.href = "tms-login.html";
     }
 }
 
-
-// ================= LOAD DASHBOARD =================
+// LOAD DASHBOARD
 function loadDashboard() {
     let user = localStorage.getItem("loggedInUser");
+    let data = JSON.parse(localStorage.getItem(user));
 
-    if (!user) return;
-
-    let userData = JSON.parse(localStorage.getItem(user));
-
-    if (userData) {
-        document.getElementById("welcomeUser").innerText =
-            "Welcome, " + userData.owner;
-    }
+    document.getElementById("welcomeUser").innerText =
+        "Welcome, " + data.owner;
 }
 
-
-// ================= LOGOUT =================
+// LOGOUT
 function logout() {
     localStorage.removeItem("loggedInUser");
-    alert("Logged out successfully");
     window.location.href = "tms-login.html";
 }
 
-
-// ================= SAVE DISPATCH =================
+// SAVE / UPDATE DISPATCH
 function saveDispatch() {
     let dispatch = {
         party1: document.getElementById("party1").value,
@@ -134,13 +93,66 @@ function saveDispatch() {
         lrNumber: document.getElementById("lrNumber").value
     };
 
-    let allDispatch = JSON.parse(localStorage.getItem("dispatchData")) || [];
+    let data = JSON.parse(localStorage.getItem("dispatchData")) || [];
 
-    allDispatch.push(dispatch);
+    let editIndex = localStorage.getItem("editIndex");
 
-    localStorage.setItem("dispatchData", JSON.stringify(allDispatch));
+    if (editIndex !== null) {
+        data[editIndex] = dispatch;
+        localStorage.removeItem("editIndex");
+        alert("Updated!");
+    } else {
+        data.push(dispatch);
+        alert("Saved!");
+    }
 
-    alert("Dispatch Saved Successfully!");
+    localStorage.setItem("dispatchData", JSON.stringify(data));
 
     location.reload();
+}
+
+// LOAD DISPATCH LIST
+function loadDispatchList() {
+    let data = JSON.parse(localStorage.getItem("dispatchData")) || [];
+
+    let table = document.querySelector("#dispatchTable tbody");
+    table.innerHTML = "";
+
+    data.forEach((d, i) => {
+        let profit = d.saleAmount - d.purchaseAmount;
+
+        table.innerHTML += `
+        <tr>
+          <td>${d.vehicleNo}</td>
+          <td>${d.from} → ${d.to}</td>
+          <td>${d.party1}</td>
+          <td>${d.party2}</td>
+          <td>${d.purchaseAmount}</td>
+          <td>${d.saleAmount}</td>
+          <td>${profit}</td>
+          <td><button onclick="editDispatch(${i})">Edit</button></td>
+        </tr>
+        `;
+    });
+}
+
+// EDIT DISPATCH
+function editDispatch(index) {
+    let data = JSON.parse(localStorage.getItem("dispatchData"));
+    let d = data[index];
+
+    document.getElementById("party1").value = d.party1;
+    document.getElementById("party2").value = d.party2;
+    document.getElementById("from").value = d.from;
+    document.getElementById("to").value = d.to;
+    document.getElementById("vehicleNo").value = d.vehicleNo;
+    document.getElementById("driverName").value = d.driverName;
+    document.getElementById("driverMobile").value = d.driverMobile;
+    document.getElementById("vehicleType").value = d.vehicleType;
+    document.getElementById("wheels").value = d.wheels;
+    document.getElementById("purchaseAmount").value = d.purchaseAmount;
+    document.getElementById("saleAmount").value = d.saleAmount;
+    document.getElementById("lrNumber").value = d.lrNumber;
+
+    localStorage.setItem("editIndex", index);
 }
