@@ -4,125 +4,91 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard</title>
-
 <link rel="stylesheet" href="style.css">
-
-<style>
-#printArea {
-    display:none;
-}
-@media print {
-    body * {
-        visibility: hidden;
-    }
-    #printArea, #printArea * {
-        visibility: visible;
-    }
-    #printArea {
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
-    }
-}
-</style>
-
 </head>
 
-<body onload="checkLogin(); loadDashboard(); loadDispatchList(); loadAuditLog(); loadLedger();">
+<body onload="checkLogin(); loadDashboard(); loadDispatchList();">
 
-<h2 id="welcomeUser"></h2>
-<button onclick="logout()">Logout</button>
+<div id="header"></div>
 
-<!-- DISPATCH -->
-<div class="card">
-<h3>New Dispatch</h3>
+<section style="padding:20px; text-align:center;">
 
-<input id="party1" placeholder="1st Party">
-<input id="party2" placeholder="2nd Party">
-<input id="from" placeholder="From">
-<input id="to" placeholder="To">
-<input id="vehicleNo" placeholder="Vehicle No">
-<input id="driverName" placeholder="Driver Name">
-<input id="driverMobile" placeholder="Driver Mobile">
-<input id="vehicleType" placeholder="Vehicle Type">
-<input id="wheels" placeholder="Wheels">
-<input id="purchaseAmount" placeholder="Purchase Amount">
-<input id="saleAmount" placeholder="Sale Amount">
-<input id="lrNumber" placeholder="LR Number">
+  <h2 id="welcomeUser">Welcome</h2>
 
-<br><br>
-<button onclick="saveDispatch()">Save</button>
-</div>
+  <button onclick="logout()" style="margin:10px; padding:10px 20px;">
+    Logout
+  </button>
 
-<!-- LEDGER + INVOICE -->
-<h3>Generate Invoice</h3>
+  <!-- DISPATCH FORM -->
+  <h3>New Dispatch</h3>
 
-<select id="partyFilter" onchange="loadLedger()">
-<option value="">Select Party</option>
-</select>
+  <input id="party1" placeholder="From Party (Vehicle Owner)">
+  <input id="party2" placeholder="To Party (Client / Transporter)">
+  <input id="from" placeholder="From City">
+  <input id="to" placeholder="To City">
+  <input id="vehicleNo" placeholder="Vehicle Number">
+  <input id="driverName" placeholder="Driver Name">
+  <input id="driverMobile" placeholder="Driver Mobile">
+  
+  <input id="vehicleType" placeholder="Vehicle Type (Open / Container)">
+  <input id="wheels" placeholder="No. of Wheels">
 
-<button onclick="generateInvoice()">Generate Invoice</button>
-<button onclick="printInvoice()">Print / PDF</button>
+  <input id="purchaseAmount" placeholder="Purchase Amount">
+  <input id="saleAmount" placeholder="Sale Amount">
+  <input id="lrNumber" placeholder="LR Number">
 
-<!-- PRINT AREA -->
-<div id="printArea"></div>
+  <br><br>
+  <button onclick="saveDispatch()">Save Dispatch</button>
 
-<!-- DISPATCH LIST -->
-<h3>Dispatch List</h3>
-<table border="1" width="100%" id="dispatchTable">
-<thead>
-<tr>
-<th>Vehicle</th>
-<th>Route</th>
-<th>Party1</th>
-<th>Party2</th>
-<th>Purchase</th>
-<th>Sale</th>
-<th>Profit</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
+  <!-- DISPATCH TABLE -->
+  <h3 style="margin-top:30px;">Dispatch Records</h3>
 
-<!-- AUDIT -->
-<h3>Audit Log</h3>
-<table border="1" width="100%" id="auditTable">
-<thead>
-<tr>
-<th>Date</th>
-<th>Vehicle</th>
-<th>Field</th>
-<th>Old</th>
-<th>New</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  <table id="dispatchTable" border="1" width="100%" style="margin-top:10px;">
+    <thead>
+      <tr>
+        <th>Vehicle</th>
+        <th>Route</th>
+        <th>From Party</th>
+        <th>To Party</th>
+        <th>Purchase</th>
+        <th>Sale</th>
+        <th>Profit</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyDZNtuiJET6l0IfBaybKtsDkqvzW4qaDxg",
-    authDomain: "devom-tms.firebaseapp.com",
-    projectId: "devom-tms",
-    storageBucket: "devom-tms.firebasestorage.app",
-    messagingSenderId: "772473003335",
-    appId: "1:772473003335:web:3b90b45dfcb48202af4062",
-    measurementId: "G-8F2DY5EG8H"
-  };
+</section>
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+<div id="footer"></div>
+
+<!-- HEADER FOOTER LOAD -->
+<script>
+fetch('header.html')
+  .then(res=>res.text())
+  .then(data=>document.getElementById('header').innerHTML=data);
+
+fetch('footer.html')
+  .then(res=>res.text())
+  .then(data=>document.getElementById('footer').innerHTML=data);
 </script>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_KEY",
+  authDomain: "PASTE_YOUR_DOMAIN",
+  projectId: "PASTE_YOUR_PROJECT_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
+
+<!-- MAIN JS -->
 <script src="js/main.js"></script>
 
 </body>
