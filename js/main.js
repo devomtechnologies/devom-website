@@ -1,6 +1,28 @@
+// REGISTER USER
+function registerUser() {
+    let userId = document.getElementById("userid").value;
+    let password = document.getElementById("password").value;
+
+    if (userId === "" || password === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    const userData = {
+        userId: userId,
+        password: password,
+        paymentDone: false
+    };
+
+    localStorage.setItem(userId, JSON.stringify(userData));
+
+    alert("Registration Successful! Now complete payment below.");
+}
+
+
 // VERIFY PAYMENT
 function verifyPayment() {
-    let userId = document.getElementById("userid").value;
+    let userId = document.getElementById("paymentUserId").value;
 
     if (userId === "") {
         alert("Enter User ID first");
@@ -24,7 +46,7 @@ function verifyPayment() {
 }
 
 
-// LOGIN FUNCTION
+// LOGIN
 function login() {
     let user = document.getElementById("userid").value;
     let pass = document.getElementById("password").value;
@@ -48,7 +70,6 @@ function login() {
 
     if (!userData.paymentDone) {
         alert("Please complete payment first!");
-        window.location.href = "payment.html";
         return;
     }
 
