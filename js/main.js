@@ -1,3 +1,4 @@
+// VERIFY PAYMENT
 function verifyPayment() {
     let userId = document.getElementById("userid").value;
 
@@ -6,14 +7,24 @@ function verifyPayment() {
         return;
     }
 
-    alert("Payment Verified Successfully!");
+    let userData = JSON.parse(localStorage.getItem(userId));
 
-    localStorage.setItem(userId, "paid");
+    if (!userData) {
+        alert("User not found!");
+        return;
+    }
+
+    userData.paymentDone = true;
+
+    localStorage.setItem(userId, JSON.stringify(userData));
+
+    alert("Payment Verified Successfully!");
 
     window.location.href = "tms-login.html";
 }
 
 
+// LOGIN FUNCTION
 function login() {
     let user = document.getElementById("userid").value;
     let pass = document.getElementById("password").value;
@@ -23,10 +34,21 @@ function login() {
         return;
     }
 
-    let paymentStatus = localStorage.getItem(user);
+    let userData = JSON.parse(localStorage.getItem(user));
 
-    if (paymentStatus !== "paid") {
+    if (!userData) {
+        alert("User not found!");
+        return;
+    }
+
+    if (userData.password !== pass) {
+        alert("Wrong password!");
+        return;
+    }
+
+    if (!userData.paymentDone) {
         alert("Please complete payment first!");
+        window.location.href = "payment.html";
         return;
     }
 
