@@ -1,71 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Dashboard - Devom Technologies</title>
-
-<style>
-
-body{
-margin:0;
-font-family:Poppins;
-background:#f4f7fb;
-}
-
-/* HEADER */
-header{
-background:#0f172a;
-color:white;
-padding:15px;
-text-align:center;
-}
-
-/* DASHBOARD */
-.container{
-padding:40px;
-text-align:center;
-}
-
-.card{
-background:white;
-padding:25px;
-margin:20px auto;
-width:300px;
-border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
-}
-
-</style>
-
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="checkLogin(); loadDashboard();">
 
-<header>
-<h2>Transporter Dashboard</h2>
-</header>
+<div id="header"></div>
 
-<div class="container">
+<section style="padding:20px; text-align:center;">
 
-<div class="card">
-<h3>Welcome User 👋</h3>
-<p>You have successfully logged in.</p>
-</div>
+  <h2 id="welcomeUser">Welcome</h2>
 
-<div class="card">
-<h3>Manage Trips</h3>
-<p>Coming Soon</p>
-</div>
+  <button onclick="logout()" style="margin:10px; padding:10px 20px;">
+    Logout
+  </button>
 
-<div class="card">
-<h3>Ledger</h3>
-<p>Coming Soon</p>
-</div>
+  <div class="card">
+    <h3>Manage Trips</h3>
+    <p>Coming Soon</p>
+  </div>
 
-</div>
+  <div class="card">
+    <h3>Ledger</h3>
+    <p>Coming Soon</p>
+  </div>
+
+</section>
+
+<div id="footer"></div>
+
+<script>
+fetch('header.html')
+  .then(res=>res.text())
+  .then(data=>document.getElementById('header').innerHTML=data);
+
+fetch('footer.html')
+  .then(res=>res.text())
+  .then(data=>document.getElementById('footer').innerHTML=data);
+</script>
+
 <script src="js/main.js"></script>
+
 </body>
 </html>
