@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="checkLogin(); loadDashboard(); loadDispatchList();">
+<body onload="checkLogin(); loadDashboard(); loadDispatchList(); loadAuditLog();">
 
 <div id="header"></div>
 
@@ -59,6 +59,22 @@
         <th>Sale</th>
         <th>Profit</th>
         <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- AUDIT LOG -->
+  <h3 style="margin-top:40px;">Audit Log</h3>
+
+  <table border="1" width="100%" id="auditTable">
+    <thead>
+      <tr>
+        <th>Date Time</th>
+        <th>Vehicle</th>
+        <th>Field Changed</th>
+        <th>Old Value</th>
+        <th>New Value</th>
       </tr>
     </thead>
     <tbody></tbody>
