@@ -5,9 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login - Devom TMS</title>
 
-<!-- CSS -->
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+section.dashboard {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #f8f8f8;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+section.dashboard input {
+  display: block;
+  width: 90%;
+  margin: 12px auto;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+section.dashboard button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+section.dashboard button:hover {
+  opacity: 0.9;
+}
+</style>
 
 </head>
 <body>
@@ -15,7 +47,6 @@
 <!-- Header -->
 <div id="header"></div>
 
-<!-- Login Form Section -->
 <section class="dashboard">
   <h2>Transporter Login</h2>
   <form id="loginForm">
@@ -23,15 +54,12 @@
     <input type="password" id="password" placeholder="Password" required>
     <button type="submit">Login</button>
   </form>
-  <p style="text-align:center; margin-top:15px;">
-    Don't have an account? <a href="tms-register.html">Register Here</a>
-  </p>
+  <p style="margin-top:15px;">Don't have an account? <a href="tms-register.html">Register Here</a></p>
 </section>
 
 <!-- Footer -->
 <div id="footer"></div>
 
-<!-- JS to load header/footer -->
 <script>
 fetch('header.html')
   .then(res => res.text())
@@ -42,25 +70,7 @@ fetch('footer.html')
   .then(data => { document.getElementById('footer').innerHTML = data; });
 </script>
 
-<!-- Main JS -->
 <script src="js/main.js"></script>
-
-<script>
-// Example login functionality (localStorage demo)
-document.getElementById('loginForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const userId = document.getElementById('userId').value.trim();
-  const password = document.getElementById('password').value.trim();
-
-  const storedUser = JSON.parse(localStorage.getItem(userId));
-  if(storedUser && storedUser.password === password){
-    alert('Login Successful!');
-    location.href = 'dashboard.html';
-  } else {
-    alert('Invalid User ID or Password');
-  }
-});
-</script>
 
 </body>
 </html>
