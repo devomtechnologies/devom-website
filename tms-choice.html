@@ -4,25 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QR Payment - Devom TMS</title>
+
+<!-- CSS -->
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+section.dashboard {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #f8f8f8;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+section.dashboard img {
+  width: 250px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+section.dashboard button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+section.dashboard button:hover {
+  opacity: 0.9;
+}
+</style>
+
 </head>
 <body>
 
+<!-- Header -->
 <div id="header"></div>
 
+<!-- Payment Section -->
 <section class="dashboard">
   <h2>Complete Your Payment</h2>
-  <p style="text-align:center;">Scan the QR code below to pay.</p>
-  <div style="text-align:center; margin-top:20px;">
-    <img src="qr.png" alt="QR Payment" style="width:250px;">
-  </div>
-  <div style="text-align:center; margin-top:20px;">
-    <button onclick="paymentDone()">Payment Done</button>
-  </div>
+  <p>Scan the QR code below to pay and activate your account.</p>
+  
+  <img src="qr.png" alt="QR Payment">
+
+  <button onclick="paymentDone()">Payment Done</button>
 </section>
 
+<!-- Footer -->
 <div id="footer"></div>
 
+<!-- Load Header/Footer -->
 <script>
 fetch('header.html')
   .then(res => res.text())
@@ -32,12 +69,14 @@ fetch('footer.html')
   .then(res => res.text())
   .then(data => { document.getElementById('footer').innerHTML = data; });
 
-// Payment simulation
+// Payment simulation function
 function paymentDone(){
   alert('Payment Completed! Now login with your User ID.');
   location.href = 'tms-login.html';
 }
 </script>
+
+<!-- Main JS -->
 <script src="js/main.js"></script>
 
 </body>
