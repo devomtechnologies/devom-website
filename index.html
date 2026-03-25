@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Devom Technologies</title>
+
+<!-- CSS -->
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -69,6 +71,7 @@ header nav a{
   font-size:16px;
   width:250px;
   cursor:pointer;
+  transition:0.3s;
 }
 .buttons button:hover{
   opacity:0.9;
@@ -189,7 +192,7 @@ footer{
   <p>Smart SaaS solutions for Transport and Cotton Industry. Digitizing traditional businesses with powerful software.</p>
   <div class="buttons">
     <button onclick="location.href='tms-choice.html'">Transport Management System</button>
-    <button>Cotton Management System</button>
+    <button onclick="alert('Coming Soon!')">Cotton Management System</button>
   </div>
 </section>
 
@@ -231,7 +234,6 @@ footer{
 <section class="contact">
   <h2>Contact</h2>
   <p>Email: support@devomtechnologies.com</p>
-  
 </section>
 
 <!-- Footer -->
@@ -266,6 +268,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 </script>
+
+<!-- Main JS -->
 <script src="js/main.js"></script>
+
 </body>
 </html>
