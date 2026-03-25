@@ -1,11 +1,16 @@
-/* ===== GLOBAL ===== */
+/* GLOBAL */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: #f5f7fb;
+  color: #1a1a1a;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
@@ -14,195 +19,207 @@ header {
   background: #0f172a;
   flex-wrap: wrap;
 }
-
 header .logo img {
-  height: 120px;
+  height: 150px;
 }
-
 header nav {
   display: flex;
   flex-wrap: wrap;
 }
-
 header nav a {
   margin-left: 20px;
-  text-decoration: none;
   color: white;
   font-weight: 500;
 }
 
-/* ===== FOOTER ===== */
-footer {
-  background: #0f172a;
-  color: white;
-  text-align: center;
-  padding: 25px;
-}
-
-/* ===== HERO ===== */
+/* HERO SECTION */
 .hero {
   padding: 70px 20px;
-  background: linear-gradient(120deg, #6fb8ff, #d9ecff);
   text-align: center;
+  background: linear-gradient(120deg, #6fb8ff, #d9ecff);
 }
-
 .hero h1 {
   font-size: 40px;
   color: #0d2a4d;
 }
-
 .hero p {
   font-size: 18px;
   max-width: 600px;
   margin: auto;
   color: #1a3d66;
 }
-
-/* ===== BUTTONS ===== */
-button {
-  padding: 10px 20px;
+.buttons {
+  margin-top: 30px;
+}
+.buttons button {
+  display: block;
+  margin: 10px auto;
+  padding: 12px 25px;
   border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #007bff, #0056b3);
+  border-radius: 25px;
+  background: #2563eb;
   color: white;
+  font-size: 16px;
+  width: 250px;
   cursor: pointer;
   transition: 0.3s;
 }
-
-button:hover {
-  transform: scale(1.05);
+.buttons button:hover {
+  opacity: 0.9;
 }
 
-/* ===== SECTION (DASHBOARD BOX) ===== */
-section {
-  max-width: 1200px;
-  margin: 30px auto;
+/* PRODUCTS SECTION */
+.products {
+  padding: 60px 20px;
   background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
 }
-
-/* ===== HEADINGS ===== */
-h2, h3 {
+.products h2 {
   text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
 }
-
-/* ===== DASHBOARD FORM GRID ===== */
-.form-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: space-between;
-}
-
-.form-grid input {
-  width: 18%;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  transition: 0.3s;
-}
-
-.form-grid input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-/* ===== TABLE ===== */
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 20px;
-}
-
-table th {
-  background: #007bff;
-  color: white;
-  padding: 12px;
-}
-
-table td {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  text-align: center;
-}
-
-/* ===== CARD ===== */
-.card {
-  background: #f8fbff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  margin: 10px 0;
-}
-
-/* ===== FORM SECTION (REGISTER/LOGIN) ===== */
-.form-section {
-  padding: 40px 20px;
-  max-width: 500px;
-  margin: auto;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-}
-
-.form-section input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-/* ===== PRODUCT GRID ===== */
 .product-grid {
   display: flex;
-  gap: 30px;
   flex-wrap: wrap;
+  gap: 30px;
   justify-content: center;
 }
+.card {
+  background: #f8fbff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  width: 300px;
+}
 
-/* ===== FEATURES ===== */
+/* FEATURES SECTION */
+.features {
+  padding: 60px 20px;
+  background: #f5f7fb;
+}
+.features h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
 .feature-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
 }
-
 .feature {
   background: white;
   padding: 20px;
   width: 220px;
   border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   text-align: center;
 }
 
-/* ===== FIX DIM SCREEN ISSUE ===== */
-.overlay {
-  display: none !important;
+/* ABOUT SECTION */
+.about {
+  padding: 60px 20px;
+  text-align: center;
+  background: white;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
+/* CONTACT SECTION */
+.contact {
+  padding: 60px 20px;
+  text-align: center;
+}
 
+/* FOOTER */
+footer {
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 30px;
+}
+
+/* DASHBOARD SECTION */
+.dashboard {
+  padding: 40px 20px;
+  background: #f5f7fb;
+}
+.dashboard h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.dashboard-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+.dashboard-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 280px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* FORMS */
+form {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+form input, form select, form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+form button {
+  padding: 12px 25px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+form button:hover {
+  opacity: 0.9;
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
   header {
     flex-direction: column;
     align-items: flex-start;
   }
-
   header .logo img {
-    height: 80px;
+    height: 100px;
   }
-
-  .form-grid input {
-    width: 48%;
+  header nav {
+    margin-top: 10px;
   }
-
-  table {
-    font-size: 12px;
+  header nav a {
+    margin: 10px 10px 0 0;
+  }
+  .hero h1 {
+    font-size: 32px;
+  }
+  .buttons button {
+    width: 100%;
+  }
+  .product-grid, .feature-grid, .dashboard-grid {
+    flex-direction: column;
+  }
+  .card, .feature, .dashboard-card {
+    width: 100%;
   }
 }
