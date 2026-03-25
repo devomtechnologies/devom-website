@@ -5,9 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Register - Devom TMS</title>
 
-<!-- CSS -->
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+section.dashboard {
+  max-width: 450px;
+  margin: 50px auto;
+  background: #f8f8f8;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+section.dashboard input {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+section.dashboard button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+section.dashboard button:hover {
+  opacity: 0.9;
+}
+</style>
 
 </head>
 <body>
@@ -15,7 +47,6 @@
 <!-- Header -->
 <div id="header"></div>
 
-<!-- Registration Form Section -->
 <section class="dashboard">
   <h2>Transporter Registration</h2>
   <form id="registerForm">
@@ -29,15 +60,12 @@
     <input type="password" id="password" placeholder="Password" required>
     <button type="submit">Register</button>
   </form>
-  <p style="text-align:center; margin-top:15px;">
-    Already have an account? <a href="tms-login.html">Login Here</a>
-  </p>
+  <p style="margin-top:15px;">Already have an account? <a href="tms-login.html">Login Here</a></p>
 </section>
 
 <!-- Footer -->
 <div id="footer"></div>
 
-<!-- JS to load header/footer -->
 <script>
 fetch('header.html')
   .then(res => res.text())
@@ -48,35 +76,7 @@ fetch('footer.html')
   .then(data => { document.getElementById('footer').innerHTML = data; });
 </script>
 
-<!-- Main JS -->
 <script src="js/main.js"></script>
-
-<script>
-// Example registration functionality (localStorage demo)
-document.getElementById('registerForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const userId = document.getElementById('userId').value.trim();
-  
-  if(localStorage.getItem(userId)){
-    alert('User ID already exists!');
-    return;
-  }
-
-  const userData = {
-    ownerName: document.getElementById('ownerName').value.trim(),
-    firmName: document.getElementById('firmName').value.trim(),
-    email: document.getElementById('email').value.trim(),
-    mobile: document.getElementById('mobile').value.trim(),
-    city: document.getElementById('city').value.trim(),
-    state: document.getElementById('state').value.trim(),
-    password: document.getElementById('password').value.trim()
-  };
-
-  localStorage.setItem(userId, JSON.stringify(userData));
-  alert('Registration Successful!');
-  location.href = 'tms-login.html';
-});
-</script>
 
 </body>
 </html>
