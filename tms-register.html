@@ -3,60 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TMS Register</title>
+<title>Register - Devom TMS</title>
+
+<!-- CSS -->
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
+<!-- Header -->
 <div id="header"></div>
 
-<section class="form-section">
-  <h2>Register for TMS</h2>
-
-  <form onsubmit="return false;">
-
-    <input type="text" id="owner" placeholder="Owner Name" required>
-    <input type="text" id="transport" placeholder="Transport Name" required>
+<!-- Registration Form Section -->
+<section class="dashboard">
+  <h2>Transporter Registration</h2>
+  <form id="registerForm">
+    <input type="text" id="ownerName" placeholder="Owner Name" required>
+    <input type="text" id="firmName" placeholder="Transport Firm Name" required>
     <input type="email" id="email" placeholder="Email" required>
     <input type="tel" id="mobile" placeholder="Mobile Number" required>
     <input type="text" id="city" placeholder="City" required>
     <input type="text" id="state" placeholder="State" required>
-
-    <input type="text" id="userid" placeholder="Create User ID" required>
-    <input type="password" id="password" placeholder="Create Password" required>
-
-    <button type="button" onclick="registerUser()">Register</button>
-
+    <input type="text" id="userId" placeholder="User ID" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Register</button>
   </form>
-
-  <!-- PAYMENT SECTION -->
-  <div style="text-align:center; margin-top:20px;">
-    <h3>Pay Registration Fee</h3>
-
-    <img src="qr.png" width="200" />
-
-    <p>After payment, enter User ID and verify</p>
-
-    <input type="text" id="paymentUserId" placeholder="Enter User ID again">
-
-    <button onclick="verifyPayment()">Verify Payment</button>
-  </div>
-
+  <p style="text-align:center; margin-top:15px;">
+    Already have an account? <a href="tms-login.html">Login Here</a>
+  </p>
 </section>
 
+<!-- Footer -->
 <div id="footer"></div>
 
+<!-- JS to load header/footer -->
 <script>
 fetch('header.html')
-  .then(res=>res.text())
-  .then(data=>document.getElementById('header').innerHTML=data);
+  .then(res => res.text())
+  .then(data => { document.getElementById('header').innerHTML = data; });
 
 fetch('footer.html')
-  .then(res=>res.text())
-  .then(data=>document.getElementById('footer').innerHTML=data);
+  .then(res => res.text())
+  .then(data => { document.getElementById('footer').innerHTML = data; });
 </script>
 
+<!-- Main JS -->
 <script src="js/main.js"></script>
+
+<script>
+// Example registration functionality (localStorage demo)
+document.getElementById('registerForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const userId = document.getElementById('userId').value.trim();
+  
+  if(localStorage.getItem(userId)){
+    alert('User ID already exists!');
+    return;
+  }
+
+  const userData = {
+    ownerName: document.getElementById('ownerName').value.trim(),
+    firmName: document.getElementById('firmName').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    mobile: document.getElementById('mobile').value.trim(),
+    city: document.getElementById('city').value.trim(),
+    state: document.getElementById('state').value.trim(),
+    password: document.getElementById('password').value.trim()
+  };
+
+  localStorage.setItem(userId, JSON.stringify(userData));
+  alert('Registration Successful!');
+  location.href = 'tms-login.html';
+});
+</script>
 
 </body>
 </html>
