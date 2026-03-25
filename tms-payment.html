@@ -22,9 +22,19 @@
 fetch('header.html').then(res => res.text()).then(data => { document.getElementById('header').innerHTML = data; });
 fetch('footer.html').then(res => res.text()).then(data => { document.getElementById('footer').innerHTML = data; });
 
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get('user');
+
 function paymentDone(){
-  alert('Payment Completed! Now login with your User ID.');
-  location.href = 'tms-login.html';
+    const user = JSON.parse(localStorage.getItem(userId));
+    if(user){
+        user.paid = true;
+        localStorage.setItem(userId, JSON.stringify(user));
+        alert('Payment Completed! Now login with your User ID.');
+        location.href = 'tms-login.html';
+    } else {
+        alert('User not found!');
+    }
 }
 </script>
 <script src="js/main.js"></script>
