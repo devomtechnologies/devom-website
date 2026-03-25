@@ -5,36 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Devom TMS - Choose</title>
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-section.dashboard {
-  max-width: 400px;
-  margin: 50px auto;
-  background: #f8f8f8;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  text-align: center;
-}
-section.dashboard button {
-  margin: 15px 0;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 25px;
-  background: #2563eb;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  width: 80%;
-}
-section.dashboard button:hover {
-  opacity: 0.9;
-}
-</style>
 </head>
 <body>
-
-<!-- Header -->
 <div id="header"></div>
 
 <section class="dashboard">
@@ -44,7 +16,6 @@ section.dashboard button:hover {
   <button onclick="location.href='tms-login.html'">Login</button>
 </section>
 
-<!-- Footer -->
 <div id="footer"></div>
 
 <script>
@@ -53,6 +24,5 @@ fetch('footer.html').then(res => res.text()).then(data => { document.getElementB
 </script>
 
 <script src="js/main.js"></script>
-
 </body>
 </html>
