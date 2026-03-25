@@ -30,22 +30,22 @@
 fetch('header.html').then(res => res.text()).then(data => { document.getElementById('header').innerHTML = data; });
 fetch('footer.html').then(res => res.text()).then(data => { document.getElementById('footer').innerHTML = data; });
 
-// Register Form JS
 document.getElementById('registerForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const user = {
-    ownerName: document.getElementById('ownerName').value,
-    firmName: document.getElementById('firmName').value,
-    email: document.getElementById('email').value,
-    mobile: document.getElementById('mobile').value,
-    city: document.getElementById('city').value,
-    state: document.getElementById('state').value,
-    userId: document.getElementById('userId').value,
-    password: document.getElementById('password').value
-  };
-  localStorage.setItem(user.userId, JSON.stringify(user));
-  alert('Registration Successful! Please complete QR Payment.');
-  location.href = 'tms-payment.html';
+    e.preventDefault();
+    const user = {
+        ownerName: document.getElementById('ownerName').value,
+        firmName: document.getElementById('firmName').value,
+        email: document.getElementById('email').value,
+        mobile: document.getElementById('mobile').value,
+        city: document.getElementById('city').value,
+        state: document.getElementById('state').value,
+        userId: document.getElementById('userId').value,
+        password: document.getElementById('password').value,
+        paid: false
+    };
+    localStorage.setItem(user.userId, JSON.stringify(user));
+    alert('Registration Successful! Please complete QR Payment.');
+    location.href = 'tms-payment.html?user='+user.userId;
 });
 </script>
 <script src="js/main.js"></script>
