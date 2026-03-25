@@ -24,18 +24,18 @@
 fetch('header.html').then(res => res.text()).then(data => { document.getElementById('header').innerHTML = data; });
 fetch('footer.html').then(res => res.text()).then(data => { document.getElementById('footer').innerHTML = data; });
 
-// Login JS
 document.getElementById('loginForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const id = document.getElementById('loginUserId').value;
-  const pass = document.getElementById('loginPassword').value;
-  const user = JSON.parse(localStorage.getItem(id));
-  if(user && user.password === pass){
-    alert('Login Successful!');
-    location.href = 'dashboard.html';
-  } else {
-    alert('Invalid User ID or Password!');
-  }
+    e.preventDefault();
+    const id = document.getElementById('loginUserId').value.trim();
+    const pass = document.getElementById('loginPassword').value.trim();
+    const user = JSON.parse(localStorage.getItem(id));
+    if(!user){ alert('User ID not found!'); return; }
+    if(!user.paid){ alert('Payment pending!'); return; }
+    if(user.password === pass){
+        localStorage.setItem('currentUser', id);
+        alert('Login Successful!');
+        location.href = 'dashboard.html';
+    } else { alert('Incorrect Password!'); }
 });
 </script>
 <script src="js/main.js"></script>
