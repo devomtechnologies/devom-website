@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Devom TMS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="header"></div>
+
+<section class="form-section">
+    <h2>Register Your Transport Firm</h2>
+    <form id="registerForm">
+        <input type="text" placeholder="Owner Name" id="ownerName" required>
+        <input type="text" placeholder="Transport Name" id="transportName" required>
+        <input type="email" placeholder="Email" id="email" required>
+        <input type="tel" placeholder="Mobile" id="mobile" required>
+        <input type="text" placeholder="City" id="city" required>
+        <input type="text" placeholder="State" id="state" required>
+        <input type="text" placeholder="User ID" id="userId" required>
+        <input type="password" placeholder="Password" id="password" required>
+        <button type="submit" class="btn primary-btn">Register & Pay</button>
+    </form>
+    <p>Already Registered? <a href="login.html">Login here</a></p>
+</section>
+
+<div id="footer"></div>
+<script src="js/main.js"></script>
+<script>
+const registerForm = document.getElementById('registerForm');
+registerForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const data = {
+        ownerName: document.getElementById('ownerName').value,
+        transportName: document.getElementById('transportName').value,
+        email: document.getElementById('email').value,
+        mobile: document.getElementById('mobile').value,
+        city: document.getElementById('city').value,
+        state: document.getElementById('state').value,
+        userId: document.getElementById('userId').value,
+        password: document.getElementById('password').value
+    };
+    // Save in localStorage temporarily (replace with Firebase later)
+    localStorage.setItem(data.userId, JSON.stringify(data));
+    alert('Registration Successful! Proceed to Payment QR');
+    window.location.href = "dashboard.html";
+});
+</script>
+</body>
+</html>
