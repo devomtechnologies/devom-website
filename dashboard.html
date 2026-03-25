@@ -4,56 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard - Devom TMS</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <div id="header"></div>
 
-<section class="products">
-  <h2>Dashboard</h2>
-  <p>Welcome! Choose an action below:</p>
-  <div class="product-grid">
-    <div class="card" onclick="location.href='entry.html'">
-      <h3>Start New Trip Entry</h3>
-      <p>Add a new trip with vehicle, driver, and MT details.</p>
+<section class="dashboard-section">
+    <h2>Transporter Dashboard</h2>
+    <div id="welcomeMsg"></div>
+    <div class="dashboard-cards">
+        <div class="card">
+            <h3>Ledger</h3>
+            <p>Check your payments and deductions</p>
+        </div>
+        <div class="card">
+            <h3>Trips</h3>
+            <p>View all upcoming and completed trips</p>
+        </div>
+        <div class="card">
+            <h3>QR Payment</h3>
+            <p>Verify payment automatically</p>
+            <button class="btn primary-btn" onclick="verifyQRPayment('12345')">Verify Payment</button>
+        </div>
     </div>
-    <div class="card" onclick="location.href='ledger.html'">
-      <h3>Ledger</h3>
-      <p>View all trips and balances.</p>
-    </div>
-  </div>
 </section>
 
 <div id="footer"></div>
-
-<script>
-fetch('header.html').then(res=>res.text()).then(data=>{document.getElementById('header').innerHTML=data;});
-fetch('footer.html').then(res=>res.text()).then(data=>{document.getElementById('footer').innerHTML=data;});
-</script>
-  <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBdHk5u-dzama64CWplPKIneILKKE-Z2H8",
-    authDomain: "devom-tms-new.firebaseapp.com",
-    projectId: "devom-tms-new",
-    storageBucket: "devom-tms-new.firebasestorage.app",
-    messagingSenderId: "516099276554",
-    appId: "1:516099276554:web:2c0f46976e53c050c8c4f3",
-    measurementId: "G-Y0W6FC70DP"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
 <script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+    const currentUserId = localStorage.getItem('currentUser');
+    if(!currentUserId){
+        alert('Please login first');
+        window.location.href = "login.html";
+        return;
+    }
+    const userData = JSON.parse(localStorage.getItem(currentUserId));
+    document.getElementById('welcomeMsg').innerHTML = `<h3>Welcome, ${userData.ownerName} (${userData.transportName})</h3>`;
+});
+</script>
 </body>
 </html>
