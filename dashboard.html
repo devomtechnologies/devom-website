@@ -8,44 +8,29 @@
 </head>
 <body>
 
-<!-- Header -->
 <div id="header"></div>
 
-<!-- Dashboard Section -->
 <section class="products">
-  <h2>Transport Management Dashboard</h2>
+  <h2>Dashboard</h2>
   <p>Welcome! Choose an action below:</p>
   <div class="product-grid">
-    <div class="card" onclick="location.href='tms-register.html'">
-      <h3>Register Transporter</h3>
-      <p>Add a new transporter to the system.</p>
-    </div>
-    <div class="card" onclick="location.href='tms-login.html'">
-      <h3>Transporter Login</h3>
-      <p>Login to access your trips and ledger.</p>
+    <div class="card" onclick="location.href='entry.html'">
+      <h3>Start New Trip Entry</h3>
+      <p>Add a new trip with vehicle, driver, and MT details.</p>
     </div>
     <div class="card" onclick="location.href='ledger.html'">
       <h3>Ledger</h3>
-      <p>View all transactions and balances.</p>
+      <p>View all trips and balances.</p>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
 <div id="footer"></div>
 
-<!-- Load header/footer dynamically -->
 <script>
-fetch('header.html')
-  .then(res => res.text())
-  .then(data => { document.getElementById('header').innerHTML = data; });
-
-fetch('footer.html')
-  .then(res => res.text())
-  .then(data => { document.getElementById('footer').innerHTML = data; });
+fetch('header.html').then(res=>res.text()).then(data=>{document.getElementById('header').innerHTML=data;});
+fetch('footer.html').then(res=>res.text()).then(data=>{document.getElementById('footer').innerHTML=data;});
 </script>
-
-<!-- JS -->
 <script src="js/main.js"></script>
 </body>
 </html>
