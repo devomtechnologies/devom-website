@@ -3,209 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard - Devom TMS</title>
+<title>Dashboard - Devom Technologies</title>
+
+<!-- CSS -->
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 </head>
+<body>
 
-<body onload="checkLogin(); loadDashboard(); loadDispatchList();">
-
+<!-- Header -->
 <div id="header"></div>
 
-<section style="padding:20px;">
-
-  <h2 id="welcomeUser" style="text-align:center;">Welcome</h2>
-
-  <div style="text-align:center;">
-    <button onclick="logout()" style="margin:10px; padding:10px 20px;">
-      Logout
-    </button>
+<!-- Dashboard Section -->
+<section class="dashboard">
+  <h2>Welcome to Your Dashboard</h2>
+  <div class="dashboard-grid">
+    <div class="dashboard-card" onclick="location.href='tms-register.html'">
+      <h3>Register Transporter</h3>
+      <p>Add new transporter accounts to TMS.</p>
+    </div>
+    <div class="dashboard-card" onclick="location.href='tms-login.html'">
+      <h3>Transporter Login</h3>
+      <p>Check transporter trips and payments.</p>
+    </div>
+    <div class="dashboard-card" onclick="alert('Ledger Coming Soon')">
+      <h3>Ledger</h3>
+      <p>View Client & Transporter Ledger.</p>
+    </div>
+    <div class="dashboard-card" onclick="alert('Reports Coming Soon')">
+      <h3>Reports</h3>
+      <p>View Smart Reports & Analytics.</p>
+    </div>
   </div>
-
-  <!-- DISPATCH FORM -->
-  <h3 style="text-align:center;">New Dispatch</h3>
-
-  <div class="form-grid">
-
-    <input id="party1" placeholder="From Party (Vehicle Owner)">
-    <input id="party2" placeholder="To Party (Client / Transporter)">
-
-    <input id="from" placeholder="From City">
-    <input id="to" placeholder="To City">
-
-    <input id="vehicleNo" placeholder="Vehicle Number">
-    <input id="driverName" placeholder="Driver Name">
-
-    <input id="driverMobile" placeholder="Driver Mobile">
-    <input id="vehicleType" placeholder="Vehicle Type (Open / Container)">
-
-    <input id="wheels" placeholder="No. of Wheels">
-    <input id="purchaseAmount" placeholder="Purchase Amount">
-
-    <input id="saleAmount" placeholder="Sale Amount">
-    <input id="lrNumber" placeholder="LR Number">
-
-  </div>
-
-  <div style="text-align:center; margin-top:15px;">
-    <button onclick="saveDispatch()">Save Dispatch</button>
-  </div>
-
-  <!-- DISPATCH TABLE -->
-  <h3 style="margin-top:30px; text-align:center;">Dispatch Records</h3>
-
-  <table id="dispatchTable">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Vehicle</th>
-        <th>Route</th>
-        <th>From Party</th>
-        <th>To Party</th>
-        <th>Purchase</th>
-        <th>Sale</th>
-        <th>Profit</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
 </section>
 
+<!-- Footer -->
 <div id="footer"></div>
 
-<!-- HEADER FOOTER LOAD -->
+<!-- JS to load header/footer -->
 <script>
 fetch('header.html')
   .then(res => res.text())
-  .then(data => document.getElementById('header').innerHTML = data);
+  .then(data => { document.getElementById('header').innerHTML = data; });
 
 fetch('footer.html')
   .then(res => res.text())
-  .then(data => document.getElementById('footer').innerHTML = data);
+  .then(data => { document.getElementById('footer').innerHTML = data; });
 </script>
 
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "PASTE_YOUR_KEY",
-  authDomain: "PASTE_YOUR_DOMAIN",
-  projectId: "PASTE_YOUR_PROJECT_ID"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-</script>
-
-<!-- MAIN JS -->
+<!-- Main JS -->
 <script src="js/main.js"></script>
-
-<!-- LOCAL LOGIC (EDIT + DELETE SUPPORT) -->
-<script>
-let editIndex = -1;
-
-function loadDispatchList() {
-  let list = JSON.parse(localStorage.getItem("dispatchData")) || [];
-  let table = document.querySelector("#dispatchTable tbody");
-
-  table.innerHTML = "";
-
-  list.forEach((item, index) => {
-
-    let row = `
-      <tr>
-        <td>${item.date}</td>
-        <td>${item.vehicleNo}</td>
-        <td>${item.from} → ${item.to}</td>
-        <td>${item.party1}</td>
-        <td>${item.party2}</td>
-        <td>${item.purchase}</td>
-        <td>${item.sale}</td>
-        <td>${item.profit}</td>
-        <td>
-          <button onclick="editDispatch(${index})">Edit</button>
-          <button onclick="deleteDispatch(${index})">Delete</button>
-        </td>
-      </tr>
-    `;
-
-    table.innerHTML += row;
-  });
-}
-
-function saveDispatch() {
-
-  let data = {
-    date: new Date().toLocaleString(),
-
-    party1: document.getElementById("party1").value,
-    party2: document.getElementById("party2").value,
-
-    from: document.getElementById("from").value,
-    to: document.getElementById("to").value,
-
-    vehicleNo: document.getElementById("vehicleNo").value,
-    driverName: document.getElementById("driverName").value,
-
-    purchase: parseFloat(document.getElementById("purchaseAmount").value) || 0,
-    sale: parseFloat(document.getElementById("saleAmount").value) || 0
-  };
-
-  data.profit = data.sale - data.purchase;
-
-  let list = JSON.parse(localStorage.getItem("dispatchData")) || [];
-
-  if (editIndex === -1) {
-    list.push(data);
-  } else {
-    list[editIndex] = data;
-    editIndex = -1;
-  }
-
-  localStorage.setItem("dispatchData", JSON.stringify(list));
-
-  clearForm();
-  loadDispatchList();
-}
-
-function editDispatch(index) {
-
-  let list = JSON.parse(localStorage.getItem("dispatchData")) || [];
-  let item = list[index];
-
-  document.getElementById("party1").value = item.party1;
-  document.getElementById("party2").value = item.party2;
-
-  document.getElementById("from").value = item.from;
-  document.getElementById("to").value = item.to;
-
-  document.getElementById("vehicleNo").value = item.vehicleNo;
-  document.getElementById("driverName").value = item.driverName;
-
-  document.getElementById("purchaseAmount").value = item.purchase;
-  document.getElementById("saleAmount").value = item.sale;
-
-  editIndex = index;
-}
-
-function deleteDispatch(index) {
-
-  let list = JSON.parse(localStorage.getItem("dispatchData")) || [];
-
-  list.splice(index, 1);
-
-  localStorage.setItem("dispatchData", JSON.stringify(list));
-
-  loadDispatchList();
-}
-
-function clearForm() {
-  document.querySelectorAll("input").forEach(input => input.value = "");
-}
-</script>
 
 </body>
 </html>
