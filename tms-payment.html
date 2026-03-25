@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Payment - Devom TMS</title>
+<link rel="stylesheet" href="style.css">
+<style>
+section.dashboard {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #f8f8f8;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+}
+section.dashboard img {
+  width: 250px;
+  margin-top: 20px;
+}
+section.dashboard button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+  width: 80%;
+}
+</style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<section class="dashboard">
+  <h2>Complete Your Payment</h2>
+  <p>Scan the QR code below to pay and activate your account.</p>
+  <img src="qr.png" alt="QR Payment">
+  <button onclick="paymentDone()">Payment Done</button>
+</section>
+
+<div id="footer"></div>
+
+<script>
+fetch('header.html').then(res => res.text()).then(data => { document.getElementById('header').innerHTML = data; });
+fetch('footer.html').then(res => res.text()).then(data => { document.getElementById('footer').innerHTML = data; });
+
+function paymentDone(){
+  alert('Payment Completed! Now login with your User ID.');
+  location.href = 'tms-login.html';
+}
+</script>
+
+</body>
+</html>
