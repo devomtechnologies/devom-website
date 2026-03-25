@@ -1,56 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Devom Technologies</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devom TMS - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div id="header"></div>
+    <!-- Header -->
+    <div id="header"></div>
 
-<section class="hero">
-  <h1>Devॐ Technologies</h1>
-  <p>Smart SaaS solutions for Transport and Cotton Industry. Digitizing traditional businesses with powerful software.</p>
-  <div class="buttons">
-    <button onclick="location.href='tms-choice.html'">Transport Management System</button>
-    <button>Cotton Management System</button>
-  </div>
-</section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Devom Transport Management System</h1>
+            <p>Efficient, Automated, and Secure Transportation Solutions</p>
+            <div class="hero-buttons">
+                <a href="register.html" class="btn primary-btn">Register Now</a>
+                <a href="login.html" class="btn secondary-btn">Login</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="images/transport-hero.png" alt="Transport System">
+        </div>
+    </section>
 
-<div id="footer"></div>
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Our Advanced Features</h2>
+        <div class="feature-cards">
+            <div class="card">
+                <h3>Automated Ledger</h3>
+                <p>Track client and transporter transactions seamlessly.</p>
+            </div>
+            <div class="card">
+                <h3>QR Payment System</h3>
+                <p>Instant payment verification for hassle-free operations.</p>
+            </div>
+            <div class="card">
+                <h3>Real-Time Dashboard</h3>
+                <p>Monitor transport, payments, and trips in real-time.</p>
+            </div>
+        </div>
+    </section>
 
-<script>
-fetch('header.html').then(res => res.text()).then(data => { document.getElementById('header').innerHTML = data; });
-fetch('footer.html').then(res => res.text()).then(data => { document.getElementById('footer').innerHTML = data; });
-</script>
+    <!-- Footer -->
+    <div id="footer"></div>
 
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBdHk5u-dzama64CWplPKIneILKKE-Z2H8",
-    authDomain: "devom-tms-new.firebaseapp.com",
-    projectId: "devom-tms-new",
-    storageBucket: "devom-tms-new.firebasestorage.app",
-    messagingSenderId: "516099276554",
-    appId: "1:516099276554:web:2c0f46976e53c050c8c4f3",
-    measurementId: "G-Y0W6FC70DP"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-
-<script src="js/main.js"></script>
+    <!-- JS Scripts -->
+    <script src="js/main.js"></script>
 </body>
 </html>
