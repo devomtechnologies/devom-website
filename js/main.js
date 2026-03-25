@@ -1,77 +1,30 @@
-// =======================
-// Transporter Registration/Login System
-// =======================
+// Header & Footer Include
+fetch('header.html')
+.then(res => res.text())
+.then(data => document.getElementById('header').innerHTML = data);
 
-// ----- QR Payment Verification Demo -----
-function verifyQRPayment(userId){
-  // Simulate payment check
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // For demo, always return paid = true
-      resolve({paid: true});
-    }, 1000);
-  });
-}
+fetch('footer.html')
+.then(res => res.text())
+.then(data => document.getElementById('footer').innerHTML = data);
 
-// ----- Login Form -----
-const loginForm = document.getElementById('loginForm');
-if(loginForm){
-  loginForm.addEventListener('submit', async function(e){
-    e.preventDefault();
-    const userId = document.getElementById('userId').value.trim();
-    const password = document.getElementById('password').value.trim();
-
-    const storedUser = JSON.parse(localStorage.getItem(userId));
-    if(storedUser && storedUser.password === password){
-      // Check QR Payment
-      const payment = await verifyQRPayment(userId);
-      if(payment.paid){
-        alert('Payment Verified! Login Successful');
-        location.href = 'dashboard.html';
-      } else {
-        alert('Payment Pending! Please complete payment.');
-      }
-    } else {
-      alert('Invalid User ID or Password');
+// Button Test
+document.addEventListener('DOMContentLoaded', () => {
+    const registerBtn = document.querySelector('.primary-btn');
+    if(registerBtn){
+        registerBtn.addEventListener('click', () => {
+            console.log('Register button clicked');
+        });
     }
-  });
-}
-
-// ----- Register Form -----
-const registerForm = document.getElementById('registerForm');
-if(registerForm){
-  registerForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    const userId = document.getElementById('userId').value.trim();
-
-    if(localStorage.getItem(userId)){
-      alert('User ID already exists!');
-      return;
+    const loginBtn = document.querySelector('.secondary-btn');
+    if(loginBtn){
+        loginBtn.addEventListener('click', () => {
+            console.log('Login button clicked');
+        });
     }
-
-    const userData = {
-      ownerName: document.getElementById('ownerName').value.trim(),
-      firmName: document.getElementById('firmName').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      mobile: document.getElementById('mobile').value.trim(),
-      city: document.getElementById('city').value.trim(),
-      state: document.getElementById('state').value.trim(),
-      password: document.getElementById('password').value.trim()
-    };
-
-    localStorage.setItem(userId, JSON.stringify(userData));
-    alert('Registration Successful! Please complete QR Payment');
-    location.href = 'tms-login.html';
-  });
-}
-
-// =======================
-// Optional: Dashboard Cards Click
-// =======================
-const dashboardCards = document.querySelectorAll('.dashboard-card');
-dashboardCards.forEach(card => {
-  card.addEventListener('click', function(){
-    const link = card.getAttribute('data-link');
-    if(link) location.href = link;
-  });
 });
+
+// Placeholder for QR Payment Verification
+function verifyQRPayment(paymentId){
+    // Future implementation for automatic QR verification
+    console.log('QR Payment Verified for ID:', paymentId);
+}
