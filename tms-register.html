@@ -1,76 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TMS Register</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Devom TMS</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <div id="header"></div>
 
-<section class="dashboard">
-  <h2>Register New Transporter</h2>
-  <form id="registerForm">
-    <input type="text" id="ownerName" placeholder="Owner Name" required><br><br>
-    <input type="text" id="firmName" placeholder="Firm Name" required><br><br>
-    <input type="email" id="email" placeholder="Email" required><br><br>
-    <input type="text" id="mobile" placeholder="Mobile" required><br><br>
-    <input type="text" id="city" placeholder="City" required><br><br>
-    <input type="text" id="state" placeholder="State" required><br><br>
-    <input type="text" id="userId" placeholder="User ID" required><br><br>
-    <input type="password" id="password" placeholder="Password" required><br><br>
-    <button type="submit">Register</button>
-  </form>
+<section class="form-section">
+    <h2>Register Your Transport Firm</h2>
+    <form id="registerForm">
+        <input type="text" placeholder="Owner Name" id="ownerName" required>
+        <input type="text" placeholder="Transport Name" id="transportName" required>
+        <input type="email" placeholder="Email" id="email" required>
+        <input type="tel" placeholder="Mobile" id="mobile" required>
+        <input type="text" placeholder="City" id="city" required>
+        <input type="text" placeholder="State" id="state" required>
+        <input type="text" placeholder="User ID" id="userId" required>
+        <input type="password" placeholder="Password" id="password" required>
+        <button type="submit" class="btn primary-btn">Register & Pay</button>
+    </form>
+    <p>Already Registered? <a href="login.html">Login here</a></p>
 </section>
 
 <div id="footer"></div>
-
+<script src="js/main.js"></script>
 <script>
-fetch('header.html').then(res => res.text()).then(data => { document.getElementById('header').innerHTML = data; });
-fetch('footer.html').then(res => res.text()).then(data => { document.getElementById('footer').innerHTML = data; });
-
-document.getElementById('registerForm').addEventListener('submit', function(e){
+const registerForm = document.getElementById('registerForm');
+registerForm.addEventListener('submit', (e)=>{
     e.preventDefault();
-    const user = {
+    const data = {
         ownerName: document.getElementById('ownerName').value,
-        firmName: document.getElementById('firmName').value,
+        transportName: document.getElementById('transportName').value,
         email: document.getElementById('email').value,
         mobile: document.getElementById('mobile').value,
         city: document.getElementById('city').value,
         state: document.getElementById('state').value,
         userId: document.getElementById('userId').value,
-        password: document.getElementById('password').value,
-        paid: false
+        password: document.getElementById('password').value
     };
-    localStorage.setItem(user.userId, JSON.stringify(user));
-    alert('Registration Successful! Please complete QR Payment.');
-    location.href = 'tms-payment.html?user='+user.userId;
+    // Save in localStorage temporarily (replace with Firebase later)
+    localStorage.setItem(data.userId, JSON.stringify(data));
+    alert('Registration Successful! Proceed to Payment QR');
+    window.location.href = "dashboard.html";
 });
 </script>
-  <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBdHk5u-dzama64CWplPKIneILKKE-Z2H8",
-    authDomain: "devom-tms-new.firebaseapp.com",
-    projectId: "devom-tms-new",
-    storageBucket: "devom-tms-new.firebasestorage.app",
-    messagingSenderId: "516099276554",
-    appId: "1:516099276554:web:2c0f46976e53c050c8c4f3",
-    measurementId: "G-Y0W6FC70DP"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-<script src="js/main.js"></script>
 </body>
 </html>
