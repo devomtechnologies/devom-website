@@ -3,15 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QR Payment - Devom TMS</title>
-
-<!-- CSS -->
+<title>Devom TMS - Choose</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 <style>
 section.dashboard {
-  max-width: 500px;
+  max-width: 400px;
   margin: 50px auto;
   background: #f8f8f8;
   padding: 25px;
@@ -19,14 +16,8 @@ section.dashboard {
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   text-align: center;
 }
-section.dashboard img {
-  width: 250px;
-  margin-top: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
 section.dashboard button {
-  margin-top: 20px;
+  margin: 15px 0;
   padding: 12px 25px;
   border: none;
   border-radius: 25px;
@@ -34,49 +25,33 @@ section.dashboard button {
   color: white;
   font-size: 16px;
   cursor: pointer;
+  width: 80%;
 }
 section.dashboard button:hover {
   opacity: 0.9;
 }
 </style>
-
 </head>
 <body>
 
 <!-- Header -->
 <div id="header"></div>
 
-<!-- Payment Section -->
 <section class="dashboard">
-  <h2>Complete Your Payment</h2>
-  <p>Scan the QR code below to pay and activate your account.</p>
-  
-  <img src="qr.png" alt="QR Payment">
-
-  <button onclick="paymentDone()">Payment Done</button>
+  <h2>Transport Management System</h2>
+  <p>Choose your action:</p>
+  <button onclick="location.href='tms-register.html'">Register New Transporter</button>
+  <button onclick="location.href='tms-login.html'">Login</button>
 </section>
 
 <!-- Footer -->
 <div id="footer"></div>
 
-<!-- Load Header/Footer -->
 <script>
-fetch('header.html')
-  .then(res => res.text())
-  .then(data => { document.getElementById('header').innerHTML = data; });
-
-fetch('footer.html')
-  .then(res => res.text())
-  .then(data => { document.getElementById('footer').innerHTML = data; });
-
-// Payment simulation function
-function paymentDone(){
-  alert('Payment Completed! Now login with your User ID.');
-  location.href = 'tms-login.html';
-}
+fetch('header.html').then(res => res.text()).then(data => { document.getElementById('header').innerHTML = data; });
+fetch('footer.html').then(res => res.text()).then(data => { document.getElementById('footer').innerHTML = data; });
 </script>
 
-<!-- Main JS -->
 <script src="js/main.js"></script>
 
 </body>
