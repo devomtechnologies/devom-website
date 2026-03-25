@@ -3,12 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard - Devom Technologies</title>
-
-<!-- CSS -->
+<title>Dashboard - Devom TMS</title>
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
@@ -16,24 +12,21 @@
 <div id="header"></div>
 
 <!-- Dashboard Section -->
-<section class="dashboard">
-  <h2>Welcome to Your Dashboard</h2>
-  <div class="dashboard-grid">
-    <div class="dashboard-card" data-link="tms-register.html">
+<section class="products">
+  <h2>Transport Management Dashboard</h2>
+  <p>Welcome! Choose an action below:</p>
+  <div class="product-grid">
+    <div class="card" onclick="location.href='tms-register.html'">
       <h3>Register Transporter</h3>
-      <p>Add new transporter accounts to TMS.</p>
+      <p>Add a new transporter to the system.</p>
     </div>
-    <div class="dashboard-card" data-link="tms-login.html">
+    <div class="card" onclick="location.href='tms-login.html'">
       <h3>Transporter Login</h3>
-      <p>Check transporter trips and payments.</p>
+      <p>Login to access your trips and ledger.</p>
     </div>
-    <div class="dashboard-card" data-link="ledger.html">
+    <div class="card" onclick="location.href='ledger.html'">
       <h3>Ledger</h3>
-      <p>View Client & Transporter Ledger</p>
-    </div>
-    <div class="dashboard-card" onclick="alert('Reports Coming Soon')">
-      <h3>Reports</h3>
-      <p>View Smart Reports & Analytics.</p>
+      <p>View all transactions and balances.</p>
     </div>
   </div>
 </section>
@@ -41,7 +34,7 @@
 <!-- Footer -->
 <div id="footer"></div>
 
-<!-- JS to load header/footer -->
+<!-- Load header/footer dynamically -->
 <script>
 fetch('header.html')
   .then(res => res.text())
@@ -52,8 +45,7 @@ fetch('footer.html')
   .then(data => { document.getElementById('footer').innerHTML = data; });
 </script>
 
-<!-- Main JS -->
+<!-- JS -->
 <script src="js/main.js"></script>
-
 </body>
 </html>
